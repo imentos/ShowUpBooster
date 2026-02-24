@@ -160,10 +160,15 @@ If app doesn't exist yet:
     - `https://imentos.github.io/ShowUpBooster/event?title=Party&...`
 
 **Card Configuration:**
-- **Title**: "ShowUpBooster"
-- **Subtitle**: "Confirm Your Attendance"
+- **Title**: "ShowUpBooster" (NO emojis or special characters)
+- **Subtitle**: "Confirm Your Attendance" (NO emojis or special characters)
 - **Action**: "Open" or "View"
-- **Call to Action**: "Confirm Event"
+- **Call to Action**: "Confirm Event" (Keep simple, no emojis)
+
+**Alternatives:**
+- Title: "ShowUpBooster" or "Event Confirmation"
+- Subtitle: "Never Miss an Event" or "Quick Event RSVP"
+- Call to Action: "Open", "Confirm", "View Event", "Get Started"
 
 **Header Image (Optional but Recommended):**
 - **Size**: 3000 × 2000 pixels (3:2 aspect ratio)
@@ -278,11 +283,32 @@ Have testers verify:
 2. Fill in required fields:
 
 **Basic Info:**
-- **Name**: ShowUpBooster
-- **Subtitle**: "Never Miss an Event"
+- **Name**: ShowUpBooster (30 char limit)
+  - **IMPORTANT**: NO emojis or special characters allowed in app name
+  - Alternative ASO names (all emoji-free):
+    - "Event Reminder & RSVP" (22 chars, keyword-rich)
+    - "ShowUp: Event Confirmations" (27 chars)
+    - "Event RSVP & Reminders" (23 chars)
+- **Subtitle**: "Never Miss an Event" (30 char limit)
+  - **IMPORTANT**: NO emojis or special characters in subtitle
+  - Alternative ASO subtitles (all emoji-free):
+    - "Instant Event RSVP & Reminders" (31 chars - needs trim)
+    - "Quick Event Confirm & Alerts" (29 chars)
+    - "Smart Meeting Reminder App" (27 chars)
+    - "Event RSVP with Smart Alerts" (29 chars)
 - **Privacy Policy URL**: (required - host on GitHub Pages)
 - **Category**: Primary: Productivity, Secondary: Business
+  - ASO Tip: Consider "Social Networking" as secondary for broader reach
 - **Content Rights**: You own or have rights to use
+
+**Character Restrictions for Name/Subtitle:**
+- ❌ NO emojis
+- ❌ NO trademark symbols (™, ®, ©)  
+- ❌ NO special characters (!?#$%^&*)
+- ❌ NO excessive punctuation
+- ✅ Letters, numbers, spaces OK
+- ✅ Basic punctuation (: - &) OK
+- ✅ Ampersand (&) OK
 
 **Pricing:**
 - **Price**: Free
@@ -300,13 +326,42 @@ Have testers verify:
 ### 7.2 Prepare App Store Assets
 
 **Screenshots (required):**
-- **6.7" Display** (iPhone 15 Pro Max): 1290 × 2796px (3 required)
-- **5.5" Display** (iPhone 8 Plus): 1242 × 2208px (3 required)
+- **6.7" Display** (iPhone 15 Pro Max): 1290 × 2796px (3-10 screenshots)
+- **5.5" Display** (iPhone 8 Plus): 1242 × 2208px (3-10 screenshots)
 
-**Screenshot suggestions:**
-1. Event detail screen with map
-2. Confirmation success screen
-3. Notification preview
+**ASO-Optimized Screenshot Strategy:**
+
+1. **First Screenshot** (Most Important - 80% see only this one)
+   - Event detail screen with map
+   - Caption: "Instant Event Confirmation - No Download Needed!"
+   - Show: Clear event details, map, "Confirm" button
+
+2. **Second Screenshot**
+   - Confirmation success screen
+   - Caption: "Smart Reminders Keep You On Track"
+   - Show: Success checkmark, reminder times (24h, 2h, 30min)
+
+3. **Third Screenshot**
+   - Notification preview
+   - Caption: "Never Miss Important Events Again"
+   - Show: Lock screen with notification
+
+4. **Fourth Screenshot** (Optional)
+   - Running late feature
+   - Caption: "One-Tap Status Updates"
+   - Show: "Running Late" and "Can't Make It" buttons
+
+5. **Fifth Screenshot** (Optional)
+   - App Clip card experience
+   - Caption: "Works Instantly via Links - Try Now!"
+   - Show: Safari with App Clip card appearing
+
+**Screenshot Design Tips:**
+- Use bold, readable captions at top (not bottom - gets cut off)
+- Include benefit-driven text, not just feature names
+- Use high contrast colors
+- Show real use cases (meeting, party, appointment)
+- Include device frame for professionalism
 
 **App Preview Video (optional):**
 - 15-30 seconds
@@ -316,43 +371,214 @@ Have testers verify:
 - Already configured in Xcode ✅
 - Will be automatically pulled from archive
 
-**Description:**
-```
-ShowUpBooster makes event attendance confirmation instant and effortless with App Clips.
+**Description (4000 character limit):**
 
-✨ Features:
-• Instant event confirmation via App Clips - no download needed
-• Smart reminders (24h, 2h, 30min before event)
-• Interactive map with event location
-• Running late or can't make it? Update your status easily
-• Works even after app is closed
+**Apple's Emoji Guidelines:**
+- ✅ Emojis ARE allowed in descriptions (commonly used and accepted)
+- ❌ Emojis NOT allowed in app name or subtitle
+- ⚠️ Avoid excessive use (1 emoji per section is fine)
+- ⚠️ Don't use emojis to replace words entirely
 
-🚀 How it works:
-1. Receive event link
-2. Tap link to see instant App Clip card
-3. Confirm your attendance
-4. Get automatic reminders
-5. Never miss an important event
+**Option 1: With Emojis (Recommended - Higher Engagement)**
+```
+Never miss an event again! ShowUpBooster delivers instant event confirmation and smart reminders without downloading a full app. Perfect for meetings, parties, appointments, and any scheduled event.
 
-Perfect for:
-• Business meetings
-• Social gatherings
-• Professional events
-• Team activities
-• Any scheduled event
+⚡ INSTANT EVENT RSVP - NO DOWNLOAD REQUIRED
+Confirm your attendance in seconds with App Clips. Just tap the event link and respond immediately - no app installation needed. Save phone storage while staying organized.
 
-ShowUpBooster App Clips work instantly without downloads, keeping your phone storage free while ensuring you never miss important events.
+🔔 SMART AUTOMATIC REMINDERS
+Get perfectly timed notifications:
+• 24 hours before - Plan ahead
+• 2 hours before - Prepare to leave  
+• 30 minutes before - Time to go!
+
+Notifications work even after closing the app. Never forget important commitments.
+
+📍 INTERACTIVE LOCATION MAPS
+See exactly where to go with built-in maps showing event addresses. One tap for directions to your destination.
+
+⏰ RUNNING LATE? UPDATE EASILY
+Honest communication made simple:
+• Tap "Running Late" to mark your status
+• Select "Can't Make It" if plans change
+• Keep everyone informed with one tap
+
+PERFECT FOR:
+• Business meetings and conference calls
+• Social gatherings and dinner parties
+• Professional networking events  
+• Team activities and group projects
+• Doctor appointments and interviews
+• Family celebrations and reunions
+• Any scheduled commitment
+
+HOW IT WORKS:
+1. Receive event invitation link
+2. Tap link - App Clip card appears instantly
+3. Confirm attendance in seconds
+4. Receive automatic smart reminders
+5. Show up on time, every time
+
+WHY SHOWUPBOOSTER?
+• No app download required - uses Apple App Clips
+• Zero storage space used on your device
+• Privacy-focused - no account needed
+• Works offline after initial confirmation
+• Crystal clear event details
+• Reliable notification system
+• Simple, beautiful interface
+• Free to use
+
+Stop missing important events. Start showing up reliably with ShowUpBooster's instant confirmation system.
+
+Download now to host events and share confirmation links easily!
 ```
 
-**Keywords:**
+**Option 2: No Emojis (Apple-Safe Alternative)**
 ```
-event, confirmation, reminder, calendar, meeting, attendance, rsvp, notification, appointment, schedule
+Never miss an event again! ShowUpBooster delivers instant event confirmation and smart reminders without downloading a full app. Perfect for meetings, parties, appointments, and any scheduled event.
+
+--- INSTANT EVENT RSVP - NO DOWNLOAD REQUIRED ---
+Confirm your attendance in seconds with App Clips. Just tap the event link and respond immediately - no app installation needed. Save phone storage while staying organized.
+
+--- SMART AUTOMATIC REMINDERS ---
+Get perfectly timed notifications:
+• 24 hours before - Plan ahead
+• 2 hours before - Prepare to leave
+• 30 minutes before - Time to go!
+
+Notifications work even after closing the app. Never forget important commitments.
+
+--- INTERACTIVE LOCATION MAPS ---
+See exactly where to go with built-in maps showing event addresses. One tap for directions to your destination.
+
+--- RUNNING LATE? UPDATE EASILY ---
+Honest communication made simple:
+• Tap "Running Late" to mark your status
+• Select "Can't Make It" if plans change  
+• Keep everyone informed with one tap
+
+PERFECT FOR:
+• Business meetings and conference calls
+• Social gatherings and dinner parties
+• Professional networking events
+• Team activities and group projects
+• Doctor appointments and interviews
+• Family celebrations and reunions
+• Any scheduled commitment
+
+HOW IT WORKS:
+1. Receive event invitation link
+2. Tap link - App Clip card appears instantly
+3. Confirm attendance in seconds
+4. Receive automatic smart reminders
+5. Show up on time, every time
+
+WHY SHOWUPBOOSTER?
+• No app download required - uses Apple App Clips
+• Zero storage space used on your device
+• Privacy-focused - no account needed
+• Works offline after initial confirmation
+• Crystal clear event details
+• Reliable notification system
+• Simple, beautiful interface
+• Free to use
+
+Stop missing important events. Start showing up reliably with ShowUpBooster's instant confirmation system.
+
+Download now to host events and share confirmation links easily!
 ```
 
-**Promotional Text (optional, can update without review):**
+**ASO Description Strategy:**
+- First 2-3 lines are critical (visible without "more" expansion)
+- Keywords front-loaded: "event," "confirmation," "reminders," "RSVP"
+- Benefit-driven language
+- Emojis optional (see options above - both work)
+- Call-to-action at the end
+- Natural keyword repetition without stuffing
+
+**What Apple ACTUALLY Restricts:**
+- ❌ Emojis in app NAME (not allowed)
+- ❌ Emojis in SUBTITLE (not allowed)
+- ❌ Trademark symbols (™, ®, ©) unless you own them
+- ❌ Excessive punctuation (!!!, ???, ...)
+- ❌ All caps text (except short section headers)
+- ❌ Misleading claims or fake reviews
+- ❌ Reference to other platforms (Android, etc.)
+- ❌ Pricing info in description (if price changes)
+- ✅ Emojis in description ARE allowed (common practice)
+- ✅ Bullet points and formatting ARE allowed
+- ✅ Call-to-action IS allowed
+
+**Keywords (100 characters max, no spaces after commas):**
 ```
-Try our App Clip instantly - no download needed! Just tap the event link.
+event reminder,rsvp,meeting,calendar,attendance,confirm,notification,appointment,invite,alert
 ```
+
+**ASO Keyword Strategy:**
+- **Character count**: 99/100 (maximize usage)
+- **High-value keywords included**:
+  - "event reminder" (high volume, medium competition)
+  - "rsvp" (specific intent, lower competition)
+  - "meeting" (broad reach)
+  - "calendar" (related search)
+  - "attendance" (unique positioning)
+  - "confirm" (action-based)
+  - "notification" (feature-based)
+  - "appointment" (alternate use case)
+  - "invite" (discovery keyword)
+  - "alert" (alternate for reminder)
+
+**Keywords to AVOID (already in app name/subtitle):**
+- Don't repeat words from your app name
+- Don't repeat words from subtitle
+- Apple ignores duplicate keywords
+
+**Alternative keyword sets to test:**
+```
+Option 2: meeting alert,event,rsvp,attendance tracker,reminder,schedule,calendar,invite,confirm
+Option 3: rsvp app,event planner,meeting reminder,attendance,schedule,calendar invite,alert,time
+```
+
+**Keyword Research Tips:**
+- Use App Store Connect's Search Ads keyword planner
+- Check competitor keywords with ASO tools (Sensor Tower, App Annie)
+- Test different combinations every update
+- Monitor keyword rankings in App Store Connect
+
+**Promotional Text (170 characters, can update without review):**
+
+**Apple Guidelines:**
+- Emojis allowed but use sparingly
+- Must be factual and not misleading
+- Can include special offers/announcements
+
+**Option 1: With Emoji**
+```
+NEW: Instant event confirmations with App Clips! No download needed - just tap any event link. Perfect for busy schedules. Try it now!
+```
+
+**Option 2: No Emoji (Ultra-Conservative)**
+```
+NEW: Instant event confirmations with App Clips! No download needed - just tap any event link. Perfect for busy schedules. Try now!
+```
+
+**Promotional Text Strategy:**
+- Updates without app review required
+- Use for:
+  - New features announcements
+  - Seasonal messaging
+  - Limited-time offers
+  - A/B testing different messages
+- Include emoji sparingly (optional)
+- Include call-to-action
+- Keep under 170 characters
+
+**Alternative seasonal messages (no emojis):**
+- Winter: "Holiday season special: Never miss a party! Instant event RSVP with App Clips - no download required."
+- Summer: "Summer events made easy! Tap event links for instant RSVP. Smart reminders keep you on schedule."
+- Back-to-school: "Organize your busy schedule! Instant meeting confirmations and smart reminders. Try it now!"
+- Year-end: "New Year productivity boost! Quick event confirmations with zero storage. Free App Clip technology."
 
 ### 7.3 Version Information
 
