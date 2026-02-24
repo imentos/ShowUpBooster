@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowUpBooster - Event Confirmation App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .test-url {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            margin-top: 20px;
+        }
+        
+        .button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .button:hover {
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📅</div>
+        <h1>ShowUpBooster</h1>
+        <p class="tagline">Never miss an event again</p>
+        
+        <div class="card">
+            <h2>Quick Event Confirmation</h2>
+            <p>Confirm your attendance to events in seconds with our App Clip. Get smart reminders so you never forget.</p>
+        </div>
+        
+        <div class="card">
+            <h2>How It Works</h2>
+            <p>1. Scan a QR code or tap a link<br>
+               2. Confirm your attendance instantly<br>
+               3. Receive timely reminders before the event</p>
+        </div>
+        
+        <div class="card">
+            <h2>Try It Now</h2>
+            <p>Open this URL on your iPhone to test the App Clip:</p>
+            <div class="test-url" id="testUrl">
+                <!-- URL will be inserted by JavaScript -->
+            </div>
+        </div>
+        
+        <a href="https://apps.apple.com/app/showupbooster" class="button" style="opacity: 0.5; pointer-events: none;">
+            Coming Soon to App Store
+        </a>
+        
+        <p class="footer">© 2026 ShowUpBooster. All rights reserved.</p>
+    </div>
+    
+    <script>
+        // Generate a test URL with current time + 3 hours
+        function generateTestUrl() {
+            const now = new Date();
+            now.setHours(now.getHours() + 3);
+            const datetime = now.toISOString();
+            
+            const baseUrl = window.location.origin;
+            const eventUrl = `${baseUrl}/event?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&datetime=${datetime}&lat=37.3346&lng=-122.009`;
+            
+            document.getElementById('testUrl').innerHTML = `<a href="${eventUrl}" style="color: white;">${eventUrl}</a>`;
+        }
+        
+        generateTestUrl();
+    </script>
+</body>
+</html>

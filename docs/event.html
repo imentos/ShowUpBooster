@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowUpBooster - Event</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📱</div>
+        <h1>Opening ShowUpBooster...</h1>
+        <p>If you have the ShowUpBooster app installed, it should open now.</p>
+        
+        <div class="info">
+            <p><strong>Don't have the app?</strong></p>
+            <p>The App Clip will download automatically on iOS 14+ when you open this link on an iPhone.</p>
+        </div>
+        
+        <div class="spinner"></div>
+    </div>
+    
+    <script>
+        // This page serves as a fallback for web browsers
+        // On iOS with the app/app clip installed, the AASA file will handle the deep link
+        
+        // Show instructions after 3 seconds
+        setTimeout(() => {
+            document.querySelector('.container').innerHTML = `
+                <div class="icon">ℹ️</div>
+                <h1>Open on iPhone</h1>
+                <p>This link opens the ShowUpBooster App Clip on iOS devices.</p>
+                <div class="info">
+                    <p><strong>Testing Instructions:</strong></p>
+                    <p>1. Open this URL on your iPhone<br>
+                       2. The App Clip will appear automatically<br>
+                       3. Or use Local Experiences in Settings → Developer</p>
+                </div>
+                <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
+                    Current URL: ${window.location.href}
+                </p>
+            `;
+        }, 3000);
+    </script>
+</body>
+</html>
