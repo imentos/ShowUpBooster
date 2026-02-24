@@ -296,7 +296,11 @@ Have testers verify:
     - "Quick Event Confirm & Alerts" (29 chars)
     - "Smart Meeting Reminder App" (27 chars)
     - "Event RSVP with Smart Alerts" (29 chars)
-- **Privacy Policy URL**: (required - host on GitHub Pages)
+- **Privacy Policy URL**: `https://imentos.github.io/ShowUpBooster/privacy.html` (required)
+  - ✅ Already created and hosted on GitHub Pages
+  - Covers: Data collection, usage, storage, GDPR, CCPA compliance
+- **Support URL**: `https://imentos.github.io/ShowUpBooster/support.html` (optional but recommended)
+  - ✅ FAQ, troubleshooting, and contact information
 - **Category**: Primary: Productivity, Secondary: Business
   - ASO Tip: Consider "Social Networking" as secondary for broader reach
 - **Content Rights**: You own or have rights to use
