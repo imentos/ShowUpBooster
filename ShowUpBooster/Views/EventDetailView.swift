@@ -343,8 +343,8 @@ struct EventDetailView: View {
                 // Build event URL for re-invoking App Clip
                 var components = URLComponents()
                 components.scheme = "https"
-                components.host = "showupbooster.app"
-                components.path = "/event"
+                components.host = "imentos.github.io"
+                components.path = "/ShowUpBooster/event"
                 components.queryItems = viewModel.event.toURLParameters()
                 
                 content.userInfo = [

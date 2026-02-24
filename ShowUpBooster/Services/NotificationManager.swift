@@ -132,8 +132,8 @@ class NotificationManager: ObservableObject {
         // Build event URL for re-invoking App Clip
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "showupbooster.app"
-        components.path = "/event"
+        components.host = "imentos.github.io"
+        components.path = "/ShowUpBooster/event"
         components.queryItems = event.toURLParameters()
         
         content.userInfo = [
