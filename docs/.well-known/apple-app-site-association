@@ -1,12 +1,9 @@
 {
   "appclips": {
     "apps": [
-      "2HQJC64KR8.rkuo.showupbooster.Clip"
-    ]
-  },
-  "webcredentials": {
-    "apps": [
-      "2HQJC64KR8.rkuo.showupbooster"
-    ]
-  }
-}
+            "2HQJC64KR8.rkuo.ShowUpBooster.Clip"
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "2HQJC64KR8.rkuo.ShowUpBooster"
