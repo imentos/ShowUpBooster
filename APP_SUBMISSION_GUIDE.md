@@ -337,27 +337,27 @@ Have testers verify:
 
 1. **First Screenshot** (Most Important - 80% see only this one)
    - Event detail screen with map
-   - Caption: "Instant Event Confirmation - No Download Needed!"
+   - Caption: "Save Time & Never Flake - Confirm in Seconds"
    - Show: Clear event details, map, "Confirm" button
 
 2. **Second Screenshot**
    - Confirmation success screen
-   - Caption: "Smart Reminders Keep You On Track"
+   - Caption: "Look Reliable & Organized - Never Forget Events"
    - Show: Success checkmark, reminder times (24h, 2h, 30min)
 
 3. **Third Screenshot**
    - Notification preview
-   - Caption: "Never Miss Important Events Again"
+   - Caption: "Protect Your Reputation - Always Arrive On Time"
    - Show: Lock screen with notification
 
 4. **Fourth Screenshot** (Optional)
    - Running late feature
-   - Caption: "One-Tap Status Updates"
+   - Caption: "Reduce Awkward Moments - Update Status Instantly"
    - Show: "Running Late" and "Can't Make It" buttons
 
 5. **Fifth Screenshot** (Optional)
    - App Clip card experience
-   - Caption: "Works Instantly via Links - Try Now!"
+   - Caption: "Zero Phone Storage - Start Using Immediately"
    - Show: Safari with App Clip card appearing
 
 **Screenshot Design Tips:**
