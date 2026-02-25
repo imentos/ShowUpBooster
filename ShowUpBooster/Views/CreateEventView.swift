@@ -10,8 +10,6 @@ import MapKit
 
 struct CreateEventView: View {
     @AppStorage("savedEvents") private var savedEventsData: Data = Data()
-    @AppStorage("hostName") private var defaultHostName: String = ""
-    @AppStorage("hostContact") private var defaultHostContact: String = ""
     
     @State private var eventTitle = ""
     @State private var eventAddress = ""
@@ -77,15 +75,6 @@ struct CreateEventView: View {
             }
             .navigationTitle("Create Event Invitation")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                // Pre-fill host info from settings
-                if hostName.isEmpty {
-                    hostName = defaultHostName
-                }
-                if hostContact.isEmpty {
-                    hostContact = defaultHostContact
-                }
-            }
             .sheet(isPresented: $showingShareSheet) {
                 if let url = generatedURL {
                     ShareSheet(items: [url])

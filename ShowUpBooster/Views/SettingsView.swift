@@ -8,28 +8,10 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("hostName") private var defaultHostName: String = ""
-    @AppStorage("hostContact") private var defaultHostContact: String = ""
     
     var body: some View {
         NavigationStack {
             Form {
-                Section("Default Host Information") {
-                    TextField("Your Name", text: $defaultHostName)
-                        .autocorrectionDisabled()
-                    
-                    TextField("Contact (Email/Phone)", text: $defaultHostContact)
-                        .autocorrectionDisabled()
-                        .keyboardType(.emailAddress)
-                }
-                .headerProminence(.increased)
-                
-                Section {
-                    Text("Set your default name and contact to auto-fill when creating events")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
                 Section("How It Works") {
                     VStack(alignment: .leading, spacing: 16) {
                         InfoRow(
