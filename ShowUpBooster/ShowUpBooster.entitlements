@@ -3,6 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>com.apple.developer.associated-domains</key>
-	<array/>
+	<array>
+		<string>appclips:imentos.github.io</string>
+		<string>appclips:imentos.github.io?mode=developer</string>
+	</array>
 </dict>
 </plist>

@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B39CECDE2F4CCA1E00EA24D5"
-               BuildableName = "ShowUpBoosterClip.app"
-               BlueprintName = "ShowUpBoosterClip"
+               BlueprintIdentifier = "B39CECBE2F4CC48E00EA24D5"
+               BuildableName = "ShowUpBooster.app"
+               BlueprintName = "ShowUpBooster"
                ReferencedContainer = "container:ShowUpBooster.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,7 +32,6 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      appClipInvocationURLString = "https://example.com/event?title=Open%20house&amp;address=166%20echo%20ave,%20campbell,%20CA&amp;dateTime=2026-02-26T05:06:11Z&amp;lat=37.2786246&amp;lng=-121.9523741&amp;host=Test&amp;contact=6508478622"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,16 +44,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B39CECDE2F4CCA1E00EA24D5"
-            BuildableName = "ShowUpBoosterClip.app"
-            BlueprintName = "ShowUpBoosterClip"
+            BlueprintIdentifier = "B39CECBE2F4CC48E00EA24D5"
+            BuildableName = "ShowUpBooster.app"
+            BlueprintName = "ShowUpBooster"
             ReferencedContainer = "container:ShowUpBooster.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
-      appClipInvocationURLString = "https://example.com/event?title=Open%20house&amp;address=166%20echo%20ave,%20campbell,%20CA&amp;dateTime=2026-02-26T05:06:11Z&amp;lat=37.2786246&amp;lng=-121.9523741&amp;host=Test&amp;contact=6508478622"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -63,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B39CECDE2F4CCA1E00EA24D5"
-            BuildableName = "ShowUpBoosterClip.app"
-            BlueprintName = "ShowUpBoosterClip"
+            BlueprintIdentifier = "B39CECBE2F4CC48E00EA24D5"
+            BuildableName = "ShowUpBooster.app"
+            BlueprintName = "ShowUpBooster"
             ReferencedContainer = "container:ShowUpBooster.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

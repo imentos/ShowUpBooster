@@ -14,19 +14,9 @@ struct Event: Identifiable, Codable {
     let dateTime: Date
     let hostName: String?
     let hostContact: String?
-    let eventType: EventType?
     let additionalNotes: String?
     let latitude: Double?
     let longitude: Double?
-    
-    enum EventType: String, Codable {
-        case openHouse = "Open House"
-        case appointment = "Appointment"
-        case showing = "Property Showing"
-        case reservation = "Reservation"
-        case meeting = "Meeting"
-        case other = "Event"
-    }
     
     init(
         id: UUID = UUID(),
@@ -35,7 +25,6 @@ struct Event: Identifiable, Codable {
         dateTime: Date,
         hostName: String? = nil,
         hostContact: String? = nil,
-        eventType: EventType? = nil,
         additionalNotes: String? = nil,
         latitude: Double? = nil,
         longitude: Double? = nil
@@ -46,7 +35,6 @@ struct Event: Identifiable, Codable {
         self.dateTime = dateTime
         self.hostName = hostName
         self.hostContact = hostContact
-        self.eventType = eventType
         self.additionalNotes = additionalNotes
         self.latitude = latitude
         self.longitude = longitude
@@ -116,10 +104,6 @@ struct Event: Identifiable, Codable {
             items.append(URLQueryItem(name: "contact", value: hostContact))
         }
         
-        if let eventType = eventType {
-            items.append(URLQueryItem(name: "type", value: eventType.rawValue))
-        }
-        
         if let notes = additionalNotes {
             items.append(URLQueryItem(name: "notes", value: notes))
         }
@@ -166,9 +150,6 @@ struct Event: Identifiable, Codable {
         // Support both hostContact and contact
         let hostContact = params["hostContact"] ?? params["contact"]
         
-        // Support both eventType and type
-        let eventType = (params["eventType"] ?? params["type"]).flatMap { EventType(rawValue: $0) }
-        
         // Support both additionalNotes and notes
         let notes = params["additionalNotes"] ?? params["notes"]
         
@@ -182,7 +163,6 @@ struct Event: Identifiable, Codable {
             dateTime: dateTime,
             hostName: hostName,
             hostContact: hostContact,
-            eventType: eventType,
             additionalNotes: notes,
             latitude: latitude,
             longitude: longitude
@@ -192,24 +172,66 @@ struct Event: Identifiable, Codable {
         return event
     }
     
+    // MARK: - URL Generation
+    
+    func generateInvitationURL() -> URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "imentos.github.io"
+        components.path = "/ShowUpBooster/"
+        
+        // ISO8601 datetime format
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        let dateTimeString = isoFormatter.string(from: dateTime)
+        
+        // Build query parameters
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "title", value: title),
+            URLQueryItem(name: "address", value: address),
+            URLQueryItem(name: "dateTime", value: dateTimeString)
+        ]
+        
+        // Add coordinates if available
+        if let lat = latitude, let lng = longitude {
+            queryItems.append(URLQueryItem(name: "lat", value: String(lat)))
+            queryItems.append(URLQueryItem(name: "lng", value: String(lng)))
+        }
+        
+        // Add optional parameters
+        if let host = hostName {
+            queryItems.append(URLQueryItem(name: "host", value: host))
+        }
+        
+        if let contact = hostContact {
+            queryItems.append(URLQueryItem(name: "contact", value: contact))
+        }
+        
+        if let notes = additionalNotes {
+            queryItems.append(URLQueryItem(name: "notes", value: notes))
+        }
+        
+        components.queryItems = queryItems
+        
+        return components.url
+    }
+    
     // MARK: - Sample Data
     
     static let sample = Event(
-        title: "Modern Villa Open House",
+        title: "Team Meeting",
         address: "123 Oak Street, San Francisco, CA 94102",
         dateTime: Date().addingTimeInterval(7200), // 2 hours from now
         hostName: "Sarah Johnson",
         hostContact: "+1 (555) 123-4567",
-        eventType: .openHouse,
-        additionalNotes: "Free parking available. Please bring ID."
+        additionalNotes: "Please bring your laptop and ID."
     )
     
     static let sample2 = Event(
-        title: "Dental Appointment",
-        address: "Bay Area Dental, 456 Market St #200",
+        title: "Coffee Meetup",
+        address: "Bay Area Cafe, 456 Market St #200",
         dateTime: Date().addingTimeInterval(86400), // Tomorrow
         hostName: "Dr. Michael Chen",
-        hostContact: "+1 (555) 987-6543",
-        eventType: .appointment
+        hostContact: "+1 (555) 987-6543"
     )
 }

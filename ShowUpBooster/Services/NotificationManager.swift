@@ -209,11 +209,11 @@ enum ReminderType: String {
     func body(for event: Event) -> String {
         switch self {
         case .dayBefore:
-            return "Don't forget! Your \(event.eventType?.rawValue.lowercased() ?? "event") is tomorrow at \(event.formattedTime)"
+            return "Don't forget! Your event is tomorrow at \(event.formattedTime)"
         case .twoHours:
-            return "Time to get ready! Your \(event.eventType?.rawValue.lowercased() ?? "event") starts at \(event.formattedTime) - \(event.address)"
+            return "Time to get ready! Your event starts at \(event.formattedTime) - \(event.address)"
         case .thirtyMinutes:
-            return "Heads up! Your \(event.eventType?.rawValue.lowercased() ?? "event") starts in 30 minutes at \(event.address)"
+            return "Heads up! Your event starts in 30 minutes at \(event.address)"
         }
     }
 }

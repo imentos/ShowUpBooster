@@ -247,7 +247,7 @@ You can use:
 
 1. Send test URL to external testers:
 ```
-https://imientos.github.io/ShowUpBooster/event?title=Test%20Meeting&address=123%20Main%20St&dateTime=2026-03-01T14:00:00Z&lat=37.7749&lng=-122.4194
+https://imentos.github.io/ShowUpBooster/event?title=Test%20Meeting&address=123%20Main%20St&dateTime=2026-03-01T14:00:00Z&lat=37.7749&lng=-122.4194
 ```
 
 2. Testers should:

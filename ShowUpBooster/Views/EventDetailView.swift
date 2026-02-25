@@ -27,7 +27,7 @@ struct EventDetailView: View {
                 VStack(spacing: 20) {
                     // Header with Icon
                     VStack(spacing: 12) {
-                        Image(systemName: viewModel.event.eventType?.icon ?? "calendar")
+                        Image(systemName: "calendar")
                             .font(.system(size: 80))
                             .foregroundColor(debugModeEnabled ? .green : .blue)
                             .onTapGesture {
@@ -37,12 +37,6 @@ struct EventDetailView: View {
                         Text(viewModel.event.title)
                             .font(.title2.bold())
                             .multilineTextAlignment(.center)
-                        
-                        if let eventType = viewModel.event.eventType {
-                            Text(eventType.rawValue)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
                         
                         // Debug mode indicator
                         if debugModeEnabled {
@@ -336,7 +330,7 @@ struct EventDetailView: View {
                 // Schedule test notification with real format
                 let content = UNMutableNotificationContent()
                 content.title = "Soon: \(viewModel.event.title)"
-                content.body = "Heads up! Your \(viewModel.event.eventType?.rawValue.lowercased() ?? "event") starts in 30 minutes at \(viewModel.event.address)"
+                content.body = "Heads up! Your event starts in 30 minutes at \(viewModel.event.address)"
                 content.sound = .default
                 content.categoryIdentifier = "EVENT_REMINDER"
                 
@@ -482,27 +476,6 @@ struct DetailRow: View {
             }
             
             Spacer()
-        }
-    }
-}
-
-// MARK: - Event Type Icon Extension
-
-extension Event.EventType {
-    var icon: String {
-        switch self {
-        case .openHouse:
-            return "house.fill"
-        case .appointment:
-            return "calendar.badge.clock"
-        case .showing:
-            return "key.fill"
-        case .reservation:
-            return "fork.knife"
-        case .meeting:
-            return "person.2.fill"
-        case .other:
-            return "calendar"
         }
     }
 }
