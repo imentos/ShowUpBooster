@@ -336,26 +336,31 @@ Have testers verify:
 **ASO-Optimized Screenshot Strategy:**
 
 1. **First Screenshot** (Most Important - 80% see only this one)
-   - Event detail screen with map
+   - Event detail screen with map (App Clip recipient view)
    - Caption: "Save Time & Never Flake - Confirm in Seconds"
    - Show: Clear event details, map, "Confirm" button
 
 2. **Second Screenshot**
+   - Create Event screen (full app host view)
+   - Caption: "Be The Organized Friend - Create Events Instantly"
+   - Show: Event creation form with title, address, date/time, "Generate Link" button
+
+3. **Third Screenshot**
    - Confirmation success screen
    - Caption: "Look Reliable & Organized - Never Forget Events"
    - Show: Success checkmark, reminder times (24h, 2h, 30min)
 
-3. **Third Screenshot**
+4. **Fourth Screenshot**
    - Notification preview
    - Caption: "Protect Your Reputation - Always Arrive On Time"
    - Show: Lock screen with notification
 
-4. **Fourth Screenshot** (Optional)
+5. **Fifth Screenshot** (Optional)
    - Running late feature
    - Caption: "Reduce Awkward Moments - Update Status Instantly"
    - Show: "Running Late" and "Can't Make It" buttons
 
-5. **Fifth Screenshot** (Optional)
+6. **Sixth Screenshot** (Optional)
    - App Clip card experience
    - Caption: "Zero Phone Storage - Start Using Immediately"
    - Show: Safari with App Clip card appearing
