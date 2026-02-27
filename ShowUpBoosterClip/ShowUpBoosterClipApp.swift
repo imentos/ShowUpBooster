@@ -66,6 +66,15 @@ struct ShowUpBoosterApp: App {
                 logger.info("📨 onOpenURL triggered")
                 handleIncomingURL(url)
             }
+            .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
+                logger.info("🌐 onContinueUserActivity triggered for web browsing")
+                if let url = userActivity.webpageURL {
+                    logger.info("   URL from user activity: \(url.absoluteString)")
+                    handleIncomingURL(url)
+                } else {
+                    logger.warning("   ⚠️ No webpage URL in user activity")
+                }
+            }
         }
     }
     
