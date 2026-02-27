@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import UIKit
 
 struct CreateEventView: View {
     @AppStorage("savedEvents") private var savedEventsData: Data = Data()
@@ -150,6 +151,8 @@ struct CreateEventView: View {
             // Save to history
             if let url = generatedURL {
                 saveEventToHistory(event: event, url: url)
+                // Dismiss keyboard before showing share sheet
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 // Automatically trigger share sheet
                 showingShareSheet = true
             }
