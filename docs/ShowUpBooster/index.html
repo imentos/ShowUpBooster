@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowUpBooster Event</title>
+    
+    <!-- App Clip Smart Banner Meta Tag -->
+    <!-- Replace YOUR_APP_STORE_ID with actual App Store ID once published -->
+    <meta name="apple-itunes-app" content="app-clip-bundle-id=rkuo.ShowUpBooster.Clip, app-clip-display=card">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card li:last-child {
+            border-bottom: none;
+        }
+        
+        .event-info {
+            text-align: left;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px 0;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📅</div>
+        <h1>ShowUpBooster Event</h1>
+        <p class="subtitle">Confirm your attendance with one tap</p>
+        
+        <div class="spinner"></div>
+        
+        <div class="card">
+            <h2>📱 Opening App Clip...</h2>
+            <p>If you're on an iPhone with iOS 14+, the ShowUpBooster App Clip will open automatically.</p>
+        </div>
+        
+        <div class="card event-info" id="event-details" style="display: none;">
+            <h2>Event Details</h2>
+            <ul id="event-list"></ul>
+        </div>
+        
+        <p class="footer">
+            This page works best on iPhone with iOS 14 or later
+        </p>
+    </div>
+    
+    <script>
+        // Parse URL parameters and display event info
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (urlParams.has('title')) {
+            const eventDetails = document.getElementById('event-details');
+            const eventList = document.getElementById('event-list');
+            
+            // Show event information from URL parameters
+            const fields = [
+                { key: 'title', label: '📋 Title' },
+                { key: 'address', label: '📍 Location' },
+                { key: 'dateTime', label: '🕐 Date & Time' },
+                { key: 'hostName', label: '👤 Host' },
+                { key: 'hostContact', label: '📞 Contact' },
+                { key: 'additionalNotes', label: '📝 Notes' }
+            ];
+            
+            fields.forEach(field => {
+                const value = urlParams.get(field.key);
+                if (value) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${field.label}:</strong> ${decodeURIComponent(value)}`;
+                    eventList.appendChild(li);
+                }
+            });
+            
+            if (eventList.children.length > 0) {
+                eventDetails.style.display = 'block';
+            }
+        }
+        
+        // Update message after 3 seconds
+        setTimeout(() => {
+            const container = document.querySelector('.container');
+            const subtitle = document.querySelector('.subtitle');
+            
+            subtitle.innerHTML = `
+                <div class="card">
+                    <h2>For Best Experience</h2>
+                    <p>Open this link on your iPhone to see the App Clip card. 
+                    The app will appear automatically - no download needed!</p>
+                </div>
+            `;
+        }, 3000);
+    </script>
+</body>
+</html>
