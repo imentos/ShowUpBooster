@@ -133,7 +133,7 @@ class NotificationManager: ObservableObject {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "imentos.github.io"
-        components.path = "/ShowUpBooster/event"
+        components.path = "/ShowUpBooster/"
         components.queryItems = event.toURLParameters()
         
         content.userInfo = [

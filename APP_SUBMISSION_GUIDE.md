@@ -152,12 +152,12 @@ If app doesn't exist yet:
 2. Fill in details:
 
 **URL Configuration:**
-- **Experience URL**: `https://imentos.github.io/ShowUpBooster/event`
+- **Experience URL**: `https://imentos.github.io/ShowUpBooster/`
 - **Enable URL Prefix**: ✅ **Important!**
   - This allows all URLs starting with this path to trigger the App Clip
   - Example URLs that will work:
-    - `https://imentos.github.io/ShowUpBooster/event?title=Meeting&...`
-    - `https://imentos.github.io/ShowUpBooster/event?title=Party&...`
+    - `https://imentos.github.io/ShowUpBooster/?title=Meeting&...`
+    - `https://imentos.github.io/ShowUpBooster/?title=Party&...`
 
 **Card Configuration:**
 - **Title**: "ShowUpBooster" (NO emojis or special characters)
@@ -247,7 +247,7 @@ You can use:
 
 1. Send test URL to external testers:
 ```
-https://imentos.github.io/ShowUpBooster/event?title=Test%20Meeting&address=123%20Main%20St&dateTime=2026-03-01T14:00:00Z&lat=37.7749&lng=-122.4194
+https://imentos.github.io/ShowUpBooster/?title=Test%20Meeting&address=123%20Main%20St&dateTime=2026-03-01T14:00:00Z&lat=37.7749&lng=-122.4194
 ```
 
 2. Testers should:
@@ -626,12 +626,12 @@ For version 1.0:
 
 Create event URLs with this format:
 ```
-https://imentos.github.io/ShowUpBooster/event?title={EVENT_TITLE}&address={ADDRESS}&dateTime={ISO8601_DATETIME}&lat={LATITUDE}&lng={LONGITUDE}
+https://imentos.github.io/ShowUpBooster/?title={EVENT_TITLE}&address={ADDRESS}&dateTime={ISO8601_DATETIME}&lat={LATITUDE}&lng={LONGITUDE}
 ```
 
 **Example URL:**
 ```
-https://imentos.github.io/ShowUpBooster/event?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&dateTime=2026-03-15T14:00:00Z&lat=37.3346&lng=-122.0090
+https://imentos.github.io/ShowUpBooster/?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&dateTime=2026-03-15T14:00:00Z&lat=37.3346&lng=-122.0090
 ```
 
 **Share via:**

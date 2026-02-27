@@ -8,7 +8,7 @@ ShowUpBooster is an **App Clip** - a lightweight experience that doesn't require
 ### Models
 - `ShowUpBooster/Models/Event.swift` - Event data model with URL encoding
 
-### Services
+### Serviceshttps://imentos.github.io/ShowUpBooster/?title=Test&address=Cupertino&dateTime=2026-03-01T14:00:00Z
 - `ShowUpBooster/Services/NotificationManager.swift` - Notification permission and reminder scheduling
 
 ### ViewModels
@@ -193,7 +193,7 @@ This is usually auto-configured, but verify:
 This means:
 - ✅ `showupbooster://` works for testing URL parameter parsing when App Clip is already running
 - ❌ `showupbooster://` will NOT launch the App Clip from the home screen
-- ✅ `https://showupbooster.app/event?...` will invoke the App Clip (requires setup)
+- ✅ `https://showupbooster.app/?...` will invoke the App Clip (requires setup)
 
 ### Option 1: Test Running App Clip (Quick)
 
@@ -384,7 +384,7 @@ After basic setup is complete:
    - Action button text ("Open" by default)
 
 7. **QR Code & NFC Tags**:
-   - Generate QR codes linking to: `https://showupbooster.app/event?params...`
+   - Generate QR codes linking to: `https://showupbooster.app/?params...`
    - Program NFC tags with same URLs
    - Test with iPhone Camera app
 

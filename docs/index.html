@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- App Clip Smart Banner Meta Tag -->
+    <meta name="apple-itunes-app" content="app-clip-bundle-id=rkuo.ShowUpBooster.Clip, app-clip-display=card">
+    
     <title>ShowUpBooster - Event Confirmation App</title>
     <style>
         * {
@@ -161,7 +165,7 @@
             const datetime = now.toISOString();
             
             const baseUrl = window.location.origin;
-            const eventUrl = `${baseUrl}/event?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&datetime=${datetime}&lat=37.3346&lng=-122.009`;
+            const eventUrl = `${baseUrl}/ShowUpBooster/?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&datetime=${datetime}&lat=37.3346&lng=-122.009`;
             
             document.getElementById('testUrl').innerHTML = `<a href="${eventUrl}" style="color: white;">${eventUrl}</a>`;
         }

@@ -112,7 +112,7 @@ components.host = "showupbooster.app"
 Replace with:
 ```swift
 components.host = "YOUR-USERNAME.github.io"
-components.path = "/showupbooster/event"
+components.path = "/ShowUpBooster/"
 ```
 
 ## Step 9: Test Locally
@@ -124,7 +124,7 @@ Update Xcode scheme environment variable:
 3. Update `_XCAppClipURL`:
 
 ```
-https://YOUR-USERNAME.github.io/showupbooster/event?title=Test&address=Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009
+https://YOUR-USERNAME.github.io/ShowUpBooster/?title=Test&address=Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009
 ```
 
 Run in simulator (⌘R) and verify it works!
@@ -136,13 +136,13 @@ Run in simulator (⌘R) and verify it works!
 On your iPhone:
 1. **Settings** → **Developer** → **Local Experiences**
 2. Tap **+**
-3. **URL Prefix**: `https://YOUR-USERNAME.github.io/showupbooster/event`
+3. **URL Prefix**: `https://YOUR-USERNAME.github.io/ShowUpBooster`
 4. **Bundle ID**: `rkuo.showupbooster.Clip`
 5. Save
 
 Now open Safari and visit:
 ```
-https://YOUR-USERNAME.github.io/showupbooster/event?title=Test&address=Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009
+https://YOUR-USERNAME.github.io/ShowUpBooster/?title=Test&address=Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009
 ```
 
 App Clip should launch!
@@ -155,17 +155,17 @@ After uploading to TestFlight and configuring App Clip Experience in App Store C
 
 **Landing Page**:
 ```
-https://YOUR-USERNAME.github.io/showupbooster
+https://YOUR-USERNAME.github.io/ShowUpBooster
 ```
 
 **Event URL Format**:
 ```
-https://YOUR-USERNAME.github.io/showupbooster/event?title=...&address=...&datetime=...&lat=...&lng=...
+https://YOUR-USERNAME.github.io/ShowUpBooster/?title=...&address=...&datetime=...&lat=...&lng=...
 ```
 
 **AASA File**:
 ```
-https://YOUR-USERNAME.github.io/showupbooster/.well-known/apple-app-site-association
+https://YOUR-USERNAME.github.io/ShowUpBooster/.well-known/apple-app-site-association
 ```
 
 ## Troubleshooting

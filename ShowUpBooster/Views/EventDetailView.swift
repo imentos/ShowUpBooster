@@ -77,11 +77,10 @@ struct EventDetailView: View {
                         
                         // Location with Map
                         VStack(alignment: .leading, spacing: 8) {
-                            HStack(alignment: .top, spacing: 12) {
+                            HStack(alignment: .top, spacing: 8) {
                                 Image(systemName: "mappin.circle.fill")
                                     .font(.body)
                                     .foregroundColor(.red)
-                                    .frame(width: 32, alignment: .leading)
                                 
                                 VStack(alignment: .leading, spacing: 3) {
                                     Text("ADDRESS")
@@ -121,13 +120,57 @@ struct EventDetailView: View {
                         // Host Info
                         if let hostName = viewModel.event.hostName {
                             Divider()
-                            DetailRow(
-                                icon: "person.circle.fill",
-                                title: "Host",
-                                value: hostName,
-                                subtitle: viewModel.event.hostContact,
-                                color: .green
-                            )
+                            HStack(alignment: .top, spacing: 8) {
+                                Image(systemName: "person.circle.fill")
+                                    .font(.body)
+                                    .foregroundColor(.green)
+                                
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text("HOST")
+                                        .font(.caption2)
+                                        .foregroundColor(.secondary)
+                                        .textCase(.uppercase)
+                                    
+                                    Text(hostName)
+                                        .font(.subheadline)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                    
+                                    if let hostContact = viewModel.event.hostContact {
+                                        HStack(spacing: 6) {
+                                            Text(hostContact)
+                                                .font(.caption2)
+                                                .foregroundColor(.secondary)
+                                            
+                                            // Phone and SMS buttons if contact looks like a phone number
+                                            if isPhoneNumber(hostContact) {
+                                                Button(action: {
+                                                    callHost(hostContact)
+                                                }) {
+                                                    Image(systemName: "phone.fill")
+                                                        .font(.caption)
+                                                        .foregroundColor(.white)
+                                                        .padding(6)
+                                                        .background(Color.green)
+                                                        .clipShape(Circle())
+                                                }
+                                                
+                                                Button(action: {
+                                                    messageHost(hostContact)
+                                                }) {
+                                                    Image(systemName: "message.fill")
+                                                        .font(.caption)
+                                                        .foregroundColor(.white)
+                                                        .padding(6)
+                                                        .background(Color.blue)
+                                                        .clipShape(Circle())
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                Spacer()
+                            }
                         }
                         
                         // Additional Notes
@@ -294,6 +337,36 @@ struct EventDetailView: View {
         }
     }
     
+    private func isPhoneNumber(_ contact: String) -> Bool {
+        // Check if contact contains digits and common phone characters
+        let phoneCharacterSet = CharacterSet(charactersIn: "0123456789+()-. ")
+        let contactCharacterSet = CharacterSet(charactersIn: contact)
+        
+        // Must contain at least one digit and only valid phone characters
+        let hasDigit = contact.rangeOfCharacter(from: .decimalDigits) != nil
+        let onlyPhoneChars = phoneCharacterSet.isSuperset(of: contactCharacterSet)
+        
+        return hasDigit && onlyPhoneChars && contact.count >= 7
+    }
+    
+    private func callHost(_ phoneNumber: String) {
+        // Remove all non-numeric characters except +
+        let cleanedNumber = phoneNumber.components(separatedBy: CharacterSet(charactersIn: "0123456789+").inverted).joined()
+        
+        if let url = URL(string: "tel:\(cleanedNumber)") {
+            openURL(url)
+        }
+    }
+    
+    private func messageHost(_ phoneNumber: String) {
+        // Remove all non-numeric characters except +
+        let cleanedNumber = phoneNumber.components(separatedBy: CharacterSet(charactersIn: "0123456789+").inverted).joined()
+        
+        if let url = URL(string: "sms:\(cleanedNumber)") {
+            openURL(url)
+        }
+    }
+    
     private func handleDebugTap() {
         let now = Date()
         
@@ -338,7 +411,7 @@ struct EventDetailView: View {
                 var components = URLComponents()
                 components.scheme = "https"
                 components.host = "imentos.github.io"
-                components.path = "/ShowUpBooster/event"
+                components.path = "/ShowUpBooster/"
                 components.queryItems = viewModel.event.toURLParameters()
                 
                 content.userInfo = [
@@ -452,11 +525,10 @@ struct DetailRow: View {
     let color: Color
     
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
+        HStack(alignment: .top, spacing: 8) {
             Image(systemName: icon)
                 .font(.body)
                 .foregroundColor(color)
-                .frame(width: 32, alignment: .leading)
             
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)

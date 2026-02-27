@@ -104,7 +104,7 @@ ShowUpBooster supports two URL types:
 
 #### 1. Universal Links (Production - Invokes App Clip)
 ```
-https://showupbooster.app/event?title=...&location=...&dateTime=...
+https://showupbooster.app/?title=...&location=...&dateTime=...
 ```
 
 **Use for**:
@@ -117,7 +117,7 @@ https://showupbooster.app/event?title=...&location=...&dateTime=...
 
 #### 2. Custom URL Scheme (Development - Already Running Only)
 ```
-showupbooster://event?title=...&location=...&dateTime=...
+showupbooster://?title=...&location=...&dateTime=...
 ```
 
 **Use for**:
@@ -142,7 +142,7 @@ showupbooster://event?title=...&location=...&dateTime=...
 
 ### Example URL
 ```
-showupbooster://event?title=Modern%20Villa%20Open%20House&location=123%20Maple%20Street&dateTime=2026-03-01T14:00:00Z&hostName=Sarah%20Johnson&hostContact=sarah@realestate.com&eventType=openHouse&additionalNotes=3bed%202bath
+showupbooster://?title=Modern%20Villa%20Open%20House&location=123%20Maple%20Street&dateTime=2026-03-01T14:00:00Z&hostName=Sarah%20Johnson&hostContact=sarah@realestate.com&eventType=openHouse&additionalNotes=3bed%202bath
 ```
 
 ## Setup & Installation
@@ -197,7 +197,7 @@ The script provides:
 
 ```bash
 # Open a test URL
-xcrun simctl openurl booted "showupbooster://event?title=Test%20Event&location=Office&dateTime=2026-03-10T15:00:00Z"
+xcrun simctl openurl booted "showupbooster://?title=Test%20Event&location=Office&dateTime=2026-03-10T15:00:00Z"
 ```
 
 ### Test Checklist
@@ -304,7 +304,7 @@ class EventViewModel: ObservableObject {
 
 ### Medium-term (v1.5)
 - [ ] **App Clip experiences** - Register with Apple
-- [ ] **Universal Links** - `https://showupbooster.app/event/...`
+- [ ] **Universal Links** - `https://showupbooster.app/...`
 - [ ] **Full app** - History, preferences, recurring events
 - [ ] **Analytics** - Track confirmation rates, no-show reduction
 - [ ] **Localization** - Spanish, Chinese, Japanese support

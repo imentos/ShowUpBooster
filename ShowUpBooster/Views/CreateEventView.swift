@@ -36,13 +36,18 @@ struct CreateEventView: View {
                     DatePicker("Date & Time", selection: $eventDateTime, in: Date()...)
                 }
                 
-                Section("Host Information (Optional)") {
+                Section("Host Information") {
                     TextField("Host Name", text: $hostName)
                         .autocorrectionDisabled()
                     
-                    TextField("Contact (Email/Phone)", text: $hostContact)
-                        .autocorrectionDisabled()
-                        .keyboardType(.emailAddress)
+                    TextField("Phone Number", text: $hostContact)
+                        .keyboardType(.phonePad)
+                    
+                    if !hostContact.isEmpty && !isValidPhoneNumber(hostContact) {
+                        Text("Please enter a valid phone number")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
                 }
                 
                 Section {
@@ -90,7 +95,20 @@ struct CreateEventView: View {
     
     private var isFormValid: Bool {
         !eventTitle.isEmpty && 
-        !eventAddress.isEmpty
+        !eventAddress.isEmpty &&
+        !hostName.isEmpty &&
+        !hostContact.isEmpty &&
+        isValidPhoneNumber(hostContact)
+    }
+    
+    private func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
+        // Remove all non-numeric characters except +
+        let cleanedNumber = phoneNumber.components(separatedBy: CharacterSet(charactersIn: "0123456789+").inverted).joined()
+        
+        // Must have at least 7 digits (min valid phone number length)
+        // and no more than 15 digits (max international format)
+        let digitCount = cleanedNumber.filter { $0.isNumber }.count
+        return digitCount >= 7 && digitCount <= 15
     }
     
     private func generateLink() {
@@ -120,8 +138,8 @@ struct CreateEventView: View {
                 title: eventTitle,
                 address: eventAddress,
                 dateTime: eventDateTime,
-                hostName: hostName.isEmpty ? nil : hostName,
-                hostContact: hostContact.isEmpty ? nil : hostContact,
+                hostName: hostName,
+                hostContact: hostContact,
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude
             )

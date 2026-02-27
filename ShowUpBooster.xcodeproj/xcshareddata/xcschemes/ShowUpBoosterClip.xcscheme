@@ -32,7 +32,7 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      appClipInvocationURLString = "https://example.com/event?title=Open%20house&amp;address=166%20echo%20ave,%20campbell,%20CA&amp;dateTime=2026-02-26T05:06:11Z&amp;lat=37.2786246&amp;lng=-121.9523741&amp;host=Test&amp;contact=6508478622"
+      appClipInvocationURLString = "https://imentos.github.io/ShowUpBooster/?title=Echo&amp;address=166%20Echo%20ave,%20Campbell,%20CA&amp;dateTime=2026-02-27T01:00:00Z&amp;lat=37.2786246&amp;lng=-121.9523741&amp;host=Paohui&amp;contact=4083385532"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -54,7 +54,7 @@
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
-      appClipInvocationURLString = "https://example.com/event?title=Open%20house&amp;address=166%20echo%20ave,%20campbell,%20CA&amp;dateTime=2026-02-26T05:06:11Z&amp;lat=37.2786246&amp;lng=-121.9523741&amp;host=Test&amp;contact=6508478622"
+      appClipInvocationURLString = "https://imentos.github.io/ShowUpBooster/?title=Echo&amp;address=166%20Echo%20ave,%20Campbell,%20CA&amp;dateTime=2026-02-27T01:00:00Z&amp;lat=37.2786246&amp;lng=-121.9523741&amp;host=Paohui&amp;contact=4083385532"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"

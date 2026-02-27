@@ -177,7 +177,7 @@ If your app uses encryption (HTTPS/TLS):
 
 1. Go to App Store Connect → Your App → **App Clips**
 2. Click **+** to add App Clip Experience
-3. **URL**: `https://showupbooster.app/event`
+3. **URL**: `https://showupbooster.app/`
 4. **Action**: "View Event" or "Open"
 5. **Title**: "Confirm Attendance"
 6. **Subtitle**: "Quick RSVP for events"
@@ -210,7 +210,7 @@ Install TestFlight app on iPhone, accept invitation, install ShowUpBooster.
 
 #### Option 2: Test with URL (in Notes/Messages):
 ```
-https://showupbooster.app/event?title=Team%20Lunch&address=Apple%20Park,%20Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009
+https://showupbooster.app/?title=Team%20Lunch&address=Apple%20Park,%20Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009
 ```
 
 ⚠️ **Known Issue in TestFlight**: 
@@ -219,7 +219,7 @@ https://showupbooster.app/event?title=Team%20Lunch&address=Apple%20Park,%20Cuper
 
 #### Option 3: Local Experience (on test device):
 1. Settings → Developer → Local Experiences
-2. Register URL: `https://showupbooster.app/event`
+2. Register URL: `https://showupbooster.app/`
 3. App Clip: Select ShowUpBooster Clip
 4. Test by opening URL in Safari or Messages
 
@@ -284,10 +284,10 @@ cd /Users/I818292/Documents/Funs/ShowUpBooster
 open ShowUpBooster.xcodeproj
 
 # Test URL in simulator (development only)
-xcrun simctl openurl booted "https://example.com/event?title=Test&address=Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009"
+xcrun simctl openurl booted "https://example.com/?title=Test&address=Cupertino&datetime=2026-03-01T19:00:00Z&lat=37.3346&lng=-122.009"
 
 # Generate sample test URL
-echo "https://showupbooster.app/event?title=Team%20Meeting&address=Apple%20Park&datetime=$(date -u -v+3H +"%Y-%m-%dT%H:00:00Z")&lat=37.3346&lng=-122.009"
+echo "https://showupbooster.app/?title=Team%20Meeting&address=Apple%20Park&datetime=$(date -u -v+3H +"%Y-%m-%dT%H:00:00Z")&lat=37.3346&lng=-122.009"
 ```
 
 ---

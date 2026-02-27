@@ -5,7 +5,7 @@
 **Custom URL schemes do NOT invoke App Clips!**
 
 - ❌ `showupbooster://` - Does NOT launch App Clip
-- ✅ `https://showupbooster.app/event?...` - Launches App Clip
+- ✅ `https://imentos.github.io/ShowUpBooster/?...` - Launches App Clip
 - ✅ QR code with https:// URL - Launches App Clip
 - ✅ NFC tag with https:// URL - Launches App Clip
 
@@ -50,7 +50,7 @@ xcrun simctl openurl booted "showupbooster://event?title=Test&location=Here&date
 2. Product → Scheme → Edit Scheme
 3. Select **Run** → **Options** tab
 4. Scroll down to **App Clip Invocation** section
-5. Set **URL**: `https://example.com/event?title=Test%20Event&location=Test%20Location&dateTime=2026-03-01T14:00:00Z`
+5. Set **URL**: `https://imentos.github.io/ShowUpBooster/?title=Test%20Event&location=Test%20Location&dateTime=2026-03-01T14:00:00Z`
 6. Click "Close"
 7. Run (⌘R)
 
@@ -63,7 +63,7 @@ The App Clip launches as if invoked by that URL - exactly like scanning a QR cod
 2. Run → Arguments tab
 3. Add Environment Variable:
    - Name: `_XCAppClipURL`
-   - Value: `https://example.com/event?title=Test&location=Here&dateTime=2026-03-01T14:00:00Z`
+   - Value: `https://imentos.github.io/ShowUpBooster/?title=Test&location=Here&dateTime=2026-03-01T14:00:00Z`
 4. Run (⌘R)
 5. App Clip launches with that URL
 
@@ -71,10 +71,10 @@ The App Clip launches as if invoked by that URL - exactly like scanning a QR cod
 1. Product → Scheme → Edit Scheme
 2. Run → Options tab
 3. Check "Register local App Clip experience"
-4. Set URL: `https://example.com/event`
+4. Set URL: `https://imentos.github.io/ShowUpBooster/`
 5. Close and Run (⌘R)
 6. Open Safari in simulator
-7. Navigate to: `https://example.com/event?title=Test&location=Here&dateTime=2026-03-01T14:00:00Z`
+7. Navigate to: `https://imentos.github.io/ShowUpBooster/?title=Test&location=Here&dateTime=2026-03-01T14:00:00Z`
 8. App Clip invokes
 
 **What this tests**: ✅ App Clip invocation, ✅ URL parsing, ✅ Full flow  
@@ -85,7 +85,7 @@ The App Clip launches as if invoked by that URL - exactly like scanning a QR cod
 **Use when**: Final testing before launch, testing QR codes/NFC
 
 **Requirements**:
-- Registered domain (e.g., `showupbooster.app`)
+- Registered domain (e.g., `imentos.github.io`)
 - HTTPS server to host AASA file
 - App Store Connect configuration
 
@@ -95,12 +95,12 @@ The App Clip launches as if invoked by that URL - exactly like scanning a QR cod
 ```json
 {
   "appclips": {
-    "apps": ["TEAMID.com.yourcompany.ShowUpBooster.Clip"]
+    "apps": ["2HQJC64KR8.rkuo.ShowUpBooster.Clip"]
   }
 }
 ```
-3. Host at: `https://showupbooster.app/.well-known/apple-app-site-association`
-4. Add Associated Domain to App Clip: `appclips:showupbooster.app`
+3. Host at: `https://imentos.github.io/.well-known/apple-app-site-association`
+4. Add Associated Domain to App Clip: `appclips:imentos.github.io`
 5. Create App Clip Experience in App Store Connect
 6. Test with real URLs, QR codes, NFC
 
@@ -111,13 +111,13 @@ The App Clip launches as if invoked by that URL - exactly like scanning a QR cod
 ### Test URL Parsing (Already Running)
 ```bash
 # Open House
-xcrun simctl openurl booted "showupbooster://event?title=Open%20House&location=123%20Main%20St&dateTime=2026-03-10T14:00:00Z&eventType=openHouse"
+xcrun simctl openurl booted "showupbooster://?title=Open%20House&location=123%20Main%20St&dateTime=2026-03-10T14:00:00Z&eventType=openHouse"
 
 # Appointment
-xcrun simctl openurl booted "showupbooster://event?title=Dentist&location=Dental%20Office&dateTime=2026-02-25T10:00:00Z&eventType=appointment"
+xcrun simctl openurl booted "showupbooster://?title=Dentist&location=Dental%20Office&dateTime=2026-02-25T10:00:00Z&eventType=appointment"
 
 # Quick Test (1 hour from now)
-xcrun simctl openurl booted "showupbooster://event?title=Test&location=Here&dateTime=$(date -u -v+1H +"%Y-%m-%dT%H:%M:%SZ")"
+xcrun simctl openurl booted "showupbooster://?title=Test&location=Here&dateTime=$(date -u -v+1H +"%Y-%m-%dT%H:%M:%SZ")"
 ```
 
 ### Generate Test URL

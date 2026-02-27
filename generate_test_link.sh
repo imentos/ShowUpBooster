@@ -134,7 +134,7 @@ notes_encoded=$(urlencode "$notes")
 
 # Build URL
 scheme="showupbooster"
-base_url="${scheme}://event"
+base_url="${scheme}://"
 
 url="${base_url}?title=${title_encoded}&location=${location_encoded}&dateTime=${datetime_encoded}&hostName=${hostName_encoded}&hostContact=${hostContact_encoded}&eventType=${eventType_encoded}"
 

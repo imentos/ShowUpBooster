@@ -12,7 +12,7 @@ In Xcode toolbar (top left):
 4. Scroll to bottom → **App Clip Invocation** section
 5. In the **URL** field, paste:
 ```
-https://example.com/event?title=Open%20House&location=123%20Main%20St&dateTime=2026-03-10T14:00:00Z&hostName=Sarah&hostContact=sarah@example.com&eventType=openHouse
+https://example.com/?title=Open%20House&location=123%20Main%20St&dateTime=2026-03-10T14:00:00Z&hostName=Sarah&hostContact=sarah@example.com&eventType=openHouse
 ```
 6. Click **Close**
 
@@ -42,22 +42,22 @@ No code changes! Instant iteration!
 
 ### Dental Appointment (Tomorrow 10am)
 ```
-https://example.com/event?title=Dental%20Cleaning&location=Bright%20Smile%20Dental&dateTime=2026-02-24T10:00:00Z&hostName=Dr.%20Chen&hostContact=555-0123&eventType=appointment
+https://example.com/?title=Dental%20Cleaning&location=Bright%20Smile%20Dental&dateTime=2026-02-24T10:00:00Z&hostName=Dr.%20Chen&hostContact=555-0123&eventType=appointment
 ```
 
 ### Job Interview (Next Week 9:30am)
 ```
-https://example.com/event?title=Software%20Engineer%20Interview&location=Tech%20Corp%20HQ&dateTime=2026-03-03T09:30:00Z&hostName=Alex%20Martinez&hostContact=hr@techcorp.com&eventType=meeting&additionalNotes=Bring%20portfolio
+https://example.com/?title=Software%20Engineer%20Interview&location=Tech%20Corp%20HQ&dateTime=2026-03-03T09:30:00Z&hostName=Alex%20Martinez&hostContact=hr@techcorp.com&eventType=meeting&additionalNotes=Bring%20portfolio
 ```
 
 ### Dinner Reservation (Tonight 7pm)
 ```
-https://example.com/event?title=Dinner%20at%20Le%20Jardin&location=Downtown&dateTime=2026-02-23T19:00:00Z&hostName=Le%20Jardin&hostContact=555-DINE&eventType=reservation&additionalNotes=Table%20for%204
+https://example.com/?title=Dinner%20at%20Le%20Jardin&location=Downtown&dateTime=2026-02-23T19:00:00Z&hostName=Le%20Jardin&hostContact=555-DINE&eventType=reservation&additionalNotes=Table%20for%204
 ```
 
 ### Past Event (Should Show Disabled)
 ```
-https://example.com/event?title=Past%20Event&location=Old%20Place&dateTime=2020-01-01T10:00:00Z&eventType=other
+https://example.com/?title=Past%20Event&location=Old%20Place&dateTime=2020-01-01T10:00:00Z&eventType=other
 ```
 
 ## Troubleshooting

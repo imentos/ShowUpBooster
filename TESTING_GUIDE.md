@@ -55,13 +55,13 @@ After confirming, test these actions:
 
 **Past Event:**
 ```bash
-xcrun simctl openurl booted "showupbooster://event?title=Past%20Event&location=Somewhere&dateTime=2026-01-01T10:00:00Z"
+xcrun simctl openurl booted "showupbooster://?title=Past%20Event&location=Somewhere&dateTime=2026-01-01T10:00:00Z"
 ```
 Expected: Button disabled, "Event has passed" message
 
 **Missing Required Parameters:**
 ```bash
-xcrun simctl openurl booted "showupbooster://event?title=No%20Location%20Event"
+xcrun simctl openurl booted "showupbooster://?title=No%20Location%20Event"
 ```
 Expected: App shows placeholder or error
 
@@ -141,7 +141,7 @@ Task {
 ### Monitor URL Handling
 Look for these logs in Xcode console:
 ```
-📱 ShowUpBooster received URL: showupbooster://event?...
+📱 ShowUpBooster received URL: showupbooster://?...
 ✅ Successfully parsed event: Modern Villa Open House
 ```
 
@@ -197,7 +197,7 @@ Target: < 2 seconds from URL to visible UI
 
 ```bash
 # Time the launch manually or use:
-time xcrun simctl openurl booted "showupbooster://event?..."
+time xcrun simctl openurl booted "showupbooster://?..."
 ```
 
 ### Confirmation Time
@@ -239,7 +239,7 @@ func testEventConfirmationFlow() {
     let app = XCUIApplication()
     
     // Launch with URL
-    app.launchEnvironment = ["testURL": "showupbooster://event?..."]
+    app.launchEnvironment = ["testURL": "showupbooster://?..."]
     app.launch()
     
     // Verify event details
@@ -269,9 +269,9 @@ Create a bash script with your favorite test URLs:
 # quick_test.sh
 
 case $1 in
-    1) url="showupbooster://event?title=Test1&..." ;;
-    2) url="showupbooster://event?title=Test2&..." ;;
-    3) url="showupbooster://event?title=Test3&..." ;;
+    1) url="showupbooster://?title=Test1&..." ;;
+    2) url="showupbooster://?title=Test2&..." ;;
+    3) url="showupbooster://?title=Test3&..." ;;
 esac
 
 xcrun simctl openurl booted "$url"
