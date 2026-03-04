@@ -30,6 +30,7 @@ struct ShowUpBoosterApp: App {
             Group {
                 if let event = appState.currentEvent {
                     EventDetailView(viewModel: EventViewModel(event: event))
+                        .id(event.id)  // Force view recreation when event changes
                 } else {
                     // Fallback view if no URL parameters
                     PlaceholderView()

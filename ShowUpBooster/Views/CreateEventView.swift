@@ -17,6 +17,7 @@ struct CreateEventView: View {
     @State private var eventDateTime = Date().addingTimeInterval(86400) // Tomorrow
     @State private var hostName = ""
     @State private var hostContact = ""
+    @State private var hostEmail = ""
     
     @State private var showingShareSheet = false
     @State private var generatedURL: URL?
@@ -49,7 +50,19 @@ struct CreateEventView: View {
                             .font(.caption)
                             .foregroundColor(.red)
                     }
+                    
+                    TextField("Email Address", text: $hostEmail)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
+                    
+                    if !hostEmail.isEmpty && !isValidEmail(hostEmail) {
+                        Text("Please enter a valid email address")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
                 }
+                .textContentType(.emailAddress)
                 
                 Section {
                     Button(action: generateLink) {
@@ -99,7 +112,9 @@ struct CreateEventView: View {
         !eventAddress.isEmpty &&
         !hostName.isEmpty &&
         !hostContact.isEmpty &&
-        isValidPhoneNumber(hostContact)
+        isValidPhoneNumber(hostContact) &&
+        !hostEmail.isEmpty &&
+        isValidEmail(hostEmail)
     }
     
     private func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
@@ -110,6 +125,12 @@ struct CreateEventView: View {
         // and no more than 15 digits (max international format)
         let digitCount = cleanedNumber.filter { $0.isNumber }.count
         return digitCount >= 7 && digitCount <= 15
+    }
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
     }
     
     private func generateLink() {
@@ -141,6 +162,7 @@ struct CreateEventView: View {
                 dateTime: eventDateTime,
                 hostName: hostName,
                 hostContact: hostContact,
+                hostEmail: hostEmail,
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude
             )

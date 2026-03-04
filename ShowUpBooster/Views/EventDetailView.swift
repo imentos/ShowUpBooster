@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MapKit
 import UserNotifications
 
 struct EventDetailView: View {
@@ -66,65 +65,61 @@ struct EventDetailView: View {
                     // Event Details Card
                     VStack(spacing: 16) {
                         // Date & Time
-                        DetailRow(
-                            icon: "calendar",
-                            title: "When",
-                            value: viewModel.event.formattedDateTime,
-                            color: .blue
-                        )
+                        HStack(alignment: .top, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("WHEN")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                    .textCase(.uppercase)
+                                
+                                Text(viewModel.event.formattedDateTime)
+                                    .font(.callout)
+                                    .fontWeight(.medium)
+                            }
+                            
+                            Spacer()
+                        }
                         
                         Divider()
                         
-                        // Location with Map
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack(alignment: .top, spacing: 8) {
-                                Image(systemName: "mappin.circle.fill")
-                                    .font(.body)
-                                    .foregroundColor(.red)
+                        // Location
+                        HStack(alignment: .top, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("ADDRESS")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                    .textCase(.uppercase)
                                 
-                                VStack(alignment: .leading, spacing: 3) {
-                                    Text("ADDRESS")
-                                        .font(.caption2)
-                                        .foregroundColor(.secondary)
-                                        .textCase(.uppercase)
-                                    
+                                HStack(spacing: 6) {
                                     Text(viewModel.event.address)
                                         .font(.callout)
                                         .fontWeight(.medium)
                                         .fixedSize(horizontal: false, vertical: true)
-                                        .textSelection(.enabled)
+                                    
+                                    Button(action: {
+                                        if let url = mapsURL(address: viewModel.event.address, 
+                                                            latitude: viewModel.event.latitude, 
+                                                            longitude: viewModel.event.longitude) {
+                                            openURL(url)
+                                        }
+                                    }) {
+                                        Image(systemName: "map.fill")
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                            .padding(6)
+                                            .background(Color.red)
+                                            .clipShape(Circle())
+                                    }
                                 }
-                                
-                                Spacer()
                             }
                             
-                            // Map Preview
-                            Button(action: {
-                                if let url = mapsURL(address: viewModel.event.address, 
-                                                    latitude: viewModel.event.latitude, 
-                                                    longitude: viewModel.event.longitude) {
-                                    openURL(url)
-                                }
-                            }) {
-                                MapPreview(
-                                    address: viewModel.event.address,
-                                    latitude: viewModel.event.latitude,
-                                    longitude: viewModel.event.longitude
-                                )
-                                    .frame(minHeight: 150, idealHeight: 180, maxHeight: 220)
-                                    .cornerRadius(8)
-                            }
-                            .buttonStyle(.plain)
+                            Spacer()
                         }
                         
                         // Host Info
                         if let hostName = viewModel.event.hostName {
                             Divider()
                             HStack(alignment: .top, spacing: 8) {
-                                Image(systemName: "person.circle.fill")
-                                    .font(.body)
-                                    .foregroundColor(.green)
-                                
                                 VStack(alignment: .leading, spacing: 3) {
                                     Text("HOST")
                                         .font(.caption2)
@@ -138,8 +133,8 @@ struct EventDetailView: View {
                                     if let hostContact = viewModel.event.hostContact {
                                         HStack(spacing: 6) {
                                             Text(hostContact)
-                                                .font(.caption2)
-                                                .foregroundColor(.secondary)
+                                                .font(.callout)
+                                                .fontWeight(.medium)
                                             
                                             // Phone and SMS buttons if contact looks like a phone number
                                             if isPhoneNumber(hostContact) {
@@ -167,6 +162,26 @@ struct EventDetailView: View {
                                             }
                                         }
                                     }
+                                    
+                                    // Host Email
+                                    if let hostEmail = viewModel.event.hostEmail {
+                                        HStack(spacing: 6) {
+                                            Text(hostEmail)
+                                                .font(.callout)
+                                                .fontWeight(.medium)
+                                            
+                                            Button(action: {
+                                                emailHost(hostEmail)
+                                            }) {
+                                                Image(systemName: "envelope.fill")
+                                                    .font(.caption)
+                                                    .foregroundColor(.white)
+                                                    .padding(6)
+                                                    .background(Color.orange)
+                                                    .clipShape(Circle())
+                                            }
+                                        }
+                                    }
                                 }
                                 
                                 Spacer()
@@ -176,15 +191,25 @@ struct EventDetailView: View {
                         // Additional Notes
                         if let notes = viewModel.event.additionalNotes {
                             Divider()
-                            DetailRow(
-                                icon: "note.text",
-                                title: "Notes",
-                                value: notes,
-                                color: .purple
-                            )
+                            HStack(alignment: .top, spacing: 8) {
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text("NOTES")
+                                        .font(.caption2)
+                                        .foregroundColor(.secondary)
+                                        .textCase(.uppercase)
+                                    
+                                    Text(notes)
+                                        .font(.callout)
+                                        .fontWeight(.medium)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
+                                
+                                Spacer()
+                            }
                         }
                     }
                     .padding(20)
+                    .frame(maxWidth: 300)
                     .background(Color.secondary.opacity(0.05))
                     .cornerRadius(16)
                     .padding(.horizontal)
@@ -264,19 +289,21 @@ struct EventDetailView: View {
                     Button(action: {
                         viewModel.markAsRunningLate()
                     }) {
-                        Label("Running Late", systemImage: "clock.arrow.circlepath")
+                        Label("Message Host - Running Late", systemImage: "message.fill")
                             .font(.subheadline)
                     }
                     .buttonStyle(.bordered)
+                    .disabled(viewModel.event.hostContact == nil)
                     
                     Button(action: {
                         viewModel.cancelAttendance()
                     }) {
-                        Label("Can't Make It", systemImage: "xmark.circle")
+                        Label("Message Host - Can't Make It", systemImage: "message.badge.fill")
                             .font(.subheadline)
                     }
                     .buttonStyle(.bordered)
                     .tint(.red)
+                    .disabled(viewModel.event.hostContact == nil)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 16)
@@ -367,6 +394,12 @@ struct EventDetailView: View {
         }
     }
     
+    private func emailHost(_ email: String) {
+        if let url = URL(string: "mailto:\(email)") {
+            openURL(url)
+        }
+    }
+    
     private func handleDebugTap() {
         let now = Date()
         
@@ -447,88 +480,22 @@ struct EventDetailView: View {
     }
 }
 
-// MARK: - Map Preview Component
-
-struct MapPreview: View {
-    let address: String
-    let latitude: Double?
-    let longitude: Double?
-    
-    @State var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
-    
-    var body: some View {
-        Map(coordinateRegion: .constant(region), annotationItems: [MapLocation(coordinate: region.center)]) { location in
-            MapMarker(coordinate: location.coordinate, tint: .red)
-        }
-        .disabled(true)
-        .overlay(
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Label("Open in Maps", systemImage: "arrow.up.right")
-                        .font(.caption)
-                        .padding(8)
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(8)
-                        .padding(8)
-                }
-            }
-        )
-        .task {
-            if let lat = latitude, let lng = longitude {
-                // Use provided coordinates
-                region = MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: lat, longitude: lng),
-                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                )
-            } else {
-                // Geocode address
-                await geocodeAddress()
-            }
-        }
-    }
-    
-    private func geocodeAddress() async {
-        let geocoder = CLGeocoder()
-        do {
-            if let placemark = try await geocoder.geocodeAddressString(address).first,
-               let location = placemark.location {
-                await MainActor.run {
-                    region = MKCoordinateRegion(
-                        center: location.coordinate,
-                        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                    )
-                }
-            }
-        } catch {
-            print("Geocoding failed: \(error)")
-        }
-    }
-}
-
-struct MapLocation: Identifiable {
-    let id = UUID()
-    let coordinate: CLLocationCoordinate2D
-}
-
 // MARK: - Detail Row Component
 
 struct DetailRow: View {
-    let icon: String
+    var icon: String? = nil
     let title: String
     let value: String
     var subtitle: String? = nil
-    let color: Color
+    var color: Color? = nil
     
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
-            Image(systemName: icon)
-                .font(.body)
-                .foregroundColor(color)
+            if let icon = icon, let color = color {
+                Image(systemName: icon)
+                    .font(.body)
+                    .foregroundColor(color)
+            }
             
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)

@@ -13,7 +13,8 @@ struct Event: Identifiable, Codable {
     let address: String
     let dateTime: Date
     let hostName: String?
-    let hostContact: String?
+    let hostContact: String?  // Phone number for SMS
+    let hostEmail: String?    // Email for confirmation notifications
     let additionalNotes: String?
     let latitude: Double?
     let longitude: Double?
@@ -25,6 +26,7 @@ struct Event: Identifiable, Codable {
         dateTime: Date,
         hostName: String? = nil,
         hostContact: String? = nil,
+        hostEmail: String? = nil,
         additionalNotes: String? = nil,
         latitude: Double? = nil,
         longitude: Double? = nil
@@ -35,6 +37,7 @@ struct Event: Identifiable, Codable {
         self.dateTime = dateTime
         self.hostName = hostName
         self.hostContact = hostContact
+        self.hostEmail = hostEmail
         self.additionalNotes = additionalNotes
         self.latitude = latitude
         self.longitude = longitude
@@ -104,6 +107,10 @@ struct Event: Identifiable, Codable {
             items.append(URLQueryItem(name: "contact", value: hostContact))
         }
         
+        if let hostEmail = hostEmail {
+            items.append(URLQueryItem(name: "email", value: hostEmail))
+        }
+        
         if let notes = additionalNotes {
             items.append(URLQueryItem(name: "notes", value: notes))
         }
@@ -150,6 +157,9 @@ struct Event: Identifiable, Codable {
         // Support both hostContact and contact
         let hostContact = params["hostContact"] ?? params["contact"]
         
+        // Support both hostEmail and email
+        let hostEmail = params["hostEmail"] ?? params["email"]
+        
         // Support both additionalNotes and notes
         let notes = params["additionalNotes"] ?? params["notes"]
         
@@ -163,6 +173,7 @@ struct Event: Identifiable, Codable {
             dateTime: dateTime,
             hostName: hostName,
             hostContact: hostContact,
+            hostEmail: hostEmail,
             additionalNotes: notes,
             latitude: latitude,
             longitude: longitude
@@ -207,6 +218,10 @@ struct Event: Identifiable, Codable {
             queryItems.append(URLQueryItem(name: "contact", value: contact))
         }
         
+        if let email = hostEmail {
+            queryItems.append(URLQueryItem(name: "email", value: email))
+        }
+        
         if let notes = additionalNotes {
             queryItems.append(URLQueryItem(name: "notes", value: notes))
         }
@@ -224,6 +239,7 @@ struct Event: Identifiable, Codable {
         dateTime: Date().addingTimeInterval(7200), // 2 hours from now
         hostName: "Sarah Johnson",
         hostContact: "+1 (555) 123-4567",
+        hostEmail: "sarah@example.com",
         additionalNotes: "Please bring your laptop and ID."
     )
     
@@ -232,6 +248,7 @@ struct Event: Identifiable, Codable {
         address: "Bay Area Cafe, 456 Market St #200",
         dateTime: Date().addingTimeInterval(86400), // Tomorrow
         hostName: "Dr. Michael Chen",
-        hostContact: "+1 (555) 987-6543"
+        hostContact: "+1 (555) 987-6543",
+        hostEmail: "michael@example.com"
     )
 }

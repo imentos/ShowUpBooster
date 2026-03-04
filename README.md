@@ -231,8 +231,8 @@ xcrun simctl openurl booted "showupbooster://?title=Test%20Event&location=Office
 ### Alternative Paths
 - **Permission denied**: Show message explaining reminders won't work
 - **Past event**: Button disabled, "Event has passed" message
-- **Running late**: Update status, notify host (future feature)
-- **Cancel**: Remove reminders, mark declined
+- **Running late**: Opens Messages app with pre-filled "running late" message to host
+- **Cancel**: Opens Messages app with pre-filled cancellation message, removes reminders
 
 ## Implementation Details
 
@@ -296,7 +296,7 @@ class EventViewModel: ObservableObject {
 ## Future Enhancements
 
 ### Short-term (v1.1)
-- [ ] **Host notifications** - Notify hosts when guests run late/cancel
+- [x] **Running late messaging** - Opens Messages with pre-filled text for host
 - [ ] **Calendar integration** - Add to native Calendar app
 - [ ] **Location services** - Show map, directions to event
 - [ ] **Weather integration** - Show forecast for event day
