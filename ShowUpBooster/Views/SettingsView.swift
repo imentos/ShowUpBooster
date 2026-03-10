@@ -41,7 +41,7 @@ struct SettingsView: View {
                     .padding(.vertical, 8)
                 }
                 
-                Section("About ShowUpBooster") {
+                Section("About Event Reminder") {
                     HStack {
                         Text("Version")
                         Spacer()
@@ -73,7 +73,7 @@ struct SettingsView: View {
                         Text("App Clips Technology")
                             .font(.headline)
                         
-                        Text("ShowUpBooster uses Apple's App Clips to let recipients confirm attendance without downloading the full app. They get instant access with smart reminders that work even after closing the clip.")
+                        Text("Event Reminder uses Apple's App Clips to let recipients confirm attendance without downloading the full app. They get instant access with smart reminders that work even after closing the clip.")
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .fixedSize(horizontal: false, vertical: true)

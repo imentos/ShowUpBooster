@@ -108,7 +108,7 @@ struct PlaceholderView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.blue)
             
-            Text("ShowUpBooster")
+            Text("Event Reminder")
                 .font(.title.bold())
             
             Text("Scan an event QR code or open an event link to confirm your attendance")

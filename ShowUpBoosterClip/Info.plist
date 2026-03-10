@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>Event Reminder</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -23,6 +25,6 @@
 		<false/>
 	</dict>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>ShowUpBooster needs permission to send you reminders before your events so you don't miss them.</string>
+	<string>Event Reminder needs permission to send you reminders before your events so you don't miss them.</string>
 </dict>
 </plist>

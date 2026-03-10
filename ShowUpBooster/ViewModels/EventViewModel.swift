@@ -120,7 +120,7 @@ class EventViewModel: ObservableObject {
         
         // Create email payload
         let emailPayload: [String: Any] = [
-            "from": "ShowUpBooster <notifications@northpoleapps.online>",  // Using your domain
+            "from": "Event Reminder <notifications@northpoleapps.online>",  // Using your domain
             "to": [hostEmail],
             "subject": emailSubject,
             "html": """
