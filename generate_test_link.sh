@@ -132,10 +132,11 @@ hostContact_encoded=$(urlencode "$hostContact")
 eventType_encoded=$(urlencode "$eventType")
 notes_encoded=$(urlencode "$notes")
 
-# Build URL (using GitHub Pages for App Clip)
-base_url="https://imentos.github.io/ShowUpBooster/"
+# Build URL
+scheme="showupbooster"
+base_url="${scheme}://"
 
-url="${base_url}?title=${title_encoded}&address=${location_encoded}&dateTime=${datetime_encoded}&hostName=${hostName_encoded}&hostContact=${hostContact_encoded}&hostEmail=${hostContact_encoded}"
+url="${base_url}?title=${title_encoded}&location=${location_encoded}&dateTime=${datetime_encoded}&hostName=${hostName_encoded}&hostContact=${hostContact_encoded}&eventType=${eventType_encoded}"
 
 # Add notes if not empty
 if [ -n "$notes" ]; then

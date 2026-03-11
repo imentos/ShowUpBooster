@@ -209,9 +209,12 @@ struct EventDetailView: View {
                         }
                     }
                     .padding(20)
-                    .frame(maxWidth: 300)
-                    .background(Color.secondary.opacity(0.05))
-                    .cornerRadius(16)
+                    .frame(maxWidth: 500)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color.blue.opacity(0.08))
+                            .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 2)
+                    )
                     .padding(.horizontal)
                     
                     // Confirmation Status (if confirmed)
