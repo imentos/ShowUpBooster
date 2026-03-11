@@ -108,6 +108,7 @@ class EventViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(resendAPIKey)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 30  // 30 second timeout
         
         // Format the event time nicely
         let formatter = DateFormatter()
@@ -143,23 +144,30 @@ class EventViewModel: ObservableObject {
             }
             
             print("📧 [ShowUpBooster] Sending email to Resend API...")
-            let (data, response) = try await URLSession.shared.data(for: request)
             
-            if let httpResponse = response as? HTTPURLResponse {
-                let responseBody = String(data: data, encoding: .utf8) ?? "No response body"
-                print("📧 [ShowUpBooster] Resend API response status: \(httpResponse.statusCode)")
-                print("📧 [ShowUpBooster] Resend API response body: \(responseBody)")
+            do {
+                let (data, response) = try await URLSession.shared.data(for: request)
                 
-                if (200...299).contains(httpResponse.statusCode) {
-                    print("✅ [ShowUpBooster] Landlord notified via email successfully")
+                if let httpResponse = response as? HTTPURLResponse {
+                    let responseBody = String(data: data, encoding: .utf8) ?? "No response body"
+                    print("📧 [ShowUpBooster] Resend API response status: \(httpResponse.statusCode)")
+                    print("📧 [ShowUpBooster] Resend API response body: \(responseBody)")
+                    
+                    if (200...299).contains(httpResponse.statusCode) {
+                        print("✅ [ShowUpBooster] Landlord notified via email successfully")
+                    } else {
+                        print("⚠️ [ShowUpBooster] Email notification failed with status \(httpResponse.statusCode)")
+                    }
                 } else {
-                    print("⚠️ [ShowUpBooster] Email notification failed with status \(httpResponse.statusCode)")
+                    print("❌ [ShowUpBooster] No HTTP response received")
                 }
+            } catch let urlError as URLError {
+                print("❌ [ShowUpBooster] URL Error: \(urlError.code.rawValue) - \(urlError.localizedDescription)")
+                print("❌ [ShowUpBooster] Error details: \(urlError)")
+            } catch {
+                print("❌ [ShowUpBooster] Unknown error: \(error.localizedDescription)")
+                print("❌ [ShowUpBooster] Error type: \(type(of: error))")
             }
-        } catch {
-            print("⚠️ [ShowUpBooster] Failed to send landlord notification: \(error.localizedDescription)")
-            // Don't show error to user - confirmation still works locally
-        }
     }
     
     // MARK: - Status Updates
