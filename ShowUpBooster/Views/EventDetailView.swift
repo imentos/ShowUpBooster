@@ -19,6 +19,7 @@ struct EventDetailView: View {
     @State private var lastTapTime = Date()
     @State private var showDebugAlert = false
     @State private var debugAlertMessage = ""
+    @State private var showLogViewer = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -337,6 +338,36 @@ struct EventDetailView: View {
                         )
                     }
                     .buttonStyle(.plain)
+                    
+                    Button(action: {
+                        showLogViewer = true
+                    }) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "doc.text.magnifyingglass")
+                            Text("View Debug Logs")
+                                .font(.caption)
+                            
+                            Spacer()
+                            
+                            Text("\(LogManager.shared.getLogs().count)")
+                                .font(.caption.monospacedDigit())
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 2)
+                                .background(
+                                    Capsule()
+                                        .fill(.white.opacity(0.3))
+                                )
+                        }
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.blue)
+                        )
+                    }
+                    .buttonStyle(.plain)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 12)
@@ -346,6 +377,9 @@ struct EventDetailView: View {
         .sheet(isPresented: $showingConfirmation) {
             ConfirmationSuccessView()
                 .presentationDetents([.height(400), .medium])
+        }
+        .sheet(isPresented: $showLogViewer) {
+            LogViewerView()
         }
         .alert("Debug Notification", isPresented: $showDebugAlert) {
             Button("OK", role: .cancel) { }

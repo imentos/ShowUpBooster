@@ -42,14 +42,14 @@ class EventViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         
-        print("✅ User confirming attendance for: \(event.title)")
+        LogManager.shared.info("✅ User confirming attendance for: \(event.title)")
         
         // Request notification permission if needed
         if !notificationManager.hasPermission {
             let granted = await notificationManager.requestPermission()
             
             if !granted {
-                print("⚠️ User declined notification permission")
+                LogManager.shared.warning("⚠️ User declined notification permission")
                 // Still mark as confirmed, but no reminders
             }
         }
@@ -59,7 +59,7 @@ class EventViewModel: ObservableObject {
             do {
                 try await notificationManager.scheduleReminders(for: event)
             } catch {
-                print("❌ Failed to schedule reminders: \(error)")
+                LogManager.shared.error("❌ Failed to schedule reminders: \(error)")
                 errorMessage = "Couldn't schedule reminders, but you're confirmed!"
             }
         }
@@ -75,7 +75,7 @@ class EventViewModel: ObservableObject {
         
         isLoading = false
         
-        print("🎉 Attendance confirmed successfully")
+        LogManager.shared.success("🎉 Attendance confirmed successfully")
     }
     
     // MARK: - Landlord Notification
@@ -83,24 +83,24 @@ class EventViewModel: ObservableObject {
     private func notifyLandlord() async {
         let resendAPIKey = "re_UqtXCbNP_KJc9zLe2pvyvpj14U6pwLtRv"
         
-        print("📧 [ShowUpBooster] Starting email notification process...")
+        LogManager.shared.info("📧 Starting email notification process...")
         
         // Get host email from event
         guard let hostEmail = event.hostEmail, !hostEmail.isEmpty else {
-            print("⚠️ [ShowUpBooster] No host email available. Skipping notification.")
+            LogManager.shared.warning("⚠️ No host email available. Skipping notification.")
             return
         }
         
-        print("📧 [ShowUpBooster] Recipient email: \(hostEmail)")
+        LogManager.shared.info("📧 Recipient email: \(hostEmail)")
         
         // Validate email format (basic check)
         guard hostEmail.contains("@") && hostEmail.contains(".") else {
-            print("⚠️ [ShowUpBooster] Invalid host email format: \(hostEmail)")
+            LogManager.shared.warning("⚠️ Invalid host email format: \(hostEmail)")
             return
         }
         
         guard let url = URL(string: "https://api.resend.com/emails") else {
-            print("❌ [ShowUpBooster] Invalid Resend API URL")
+            LogManager.shared.error("❌ Invalid Resend API URL")
             return
         }
         
@@ -116,7 +116,7 @@ class EventViewModel: ObservableObject {
         let formattedDateTime = formatter.string(from: event.dateTime)
         
         let emailSubject = "✅ Showing Confirmed: \(event.title)"
-        print("📧 [ShowUpBooster] Email subject: \(emailSubject)")
+        LogManager.shared.info("📧 Email subject: \(emailSubject)")
         
         // Create email payload
         let emailPayload: [String: Any] = [
@@ -139,25 +139,35 @@ class EventViewModel: ObservableObject {
             
             // Log the payload
             if let payloadString = String(data: request.httpBody!, encoding: .utf8) {
-                print("📧 [ShowUpBooster] Email payload: \(payloadString)")
+                LogManager.shared.debug("📧 Email payload: \(payloadString)")
             }
             
-            print("📧 [ShowUpBooster] Sending email to Resend API...")
+            LogManager.shared.info("📧 Sending email to Resend API...")
+            LogManager.shared.debug("Request URL: \(url.absoluteString)")
+            LogManager.shared.debug("Request method: \(request.httpMethod ?? "nil")")
+            LogManager.shared.debug("Request headers: \(request.allHTTPHeaderFields?.description ?? "nil")")
+            
             let (data, response) = try await URLSession.shared.data(for: request)
+            
+            LogManager.shared.info("📧 Received response from Resend API")
             
             if let httpResponse = response as? HTTPURLResponse {
                 let responseBody = String(data: data, encoding: .utf8) ?? "No response body"
-                print("📧 [ShowUpBooster] Resend API response status: \(httpResponse.statusCode)")
-                print("📧 [ShowUpBooster] Resend API response body: \(responseBody)")
+                LogManager.shared.info("📧 Resend API response status: \(httpResponse.statusCode)")
+                LogManager.shared.debug("📧 Resend API response body: \(responseBody)")
                 
                 if (200...299).contains(httpResponse.statusCode) {
-                    print("✅ [ShowUpBooster] Landlord notified via email successfully")
+                    LogManager.shared.success("✅ Landlord notified via email successfully")
                 } else {
-                    print("⚠️ [ShowUpBooster] Email notification failed with status \(httpResponse.statusCode)")
+                    LogManager.shared.warning("⚠️ Email notification failed with status \(httpResponse.statusCode)")
                 }
             }
         } catch {
-            print("⚠️ [ShowUpBooster] Failed to send landlord notification: \(error.localizedDescription)")
+            LogManager.shared.error("⚠️ Failed to send landlord notification: \(error.localizedDescription)")
+            if let urlError = error as? URLError {
+                LogManager.shared.error("URLError code: \(urlError.code.rawValue)")
+                LogManager.shared.error("URLError description: \(urlError.errorCode)")
+            }
             // Don't show error to user - confirmation still works locally
         }
     }
@@ -166,7 +176,7 @@ class EventViewModel: ObservableObject {
    
     func markAsRunningLate() {
         attendanceStatus = .late
-        print("⏰ User marked as running late")
+        LogManager.shared.info("⏰ User marked as running late")
         
         // Open Messages app with pre-filled message to host
         openMessageToHost()
@@ -174,7 +184,7 @@ class EventViewModel: ObservableObject {
     
     func openMessageToHost() {
         guard let hostContact = event.hostContact else {
-            print("⚠️ No host contact available")
+            LogManager.shared.warning("⚠️ No host contact available")
             return
         }
         
@@ -190,9 +200,9 @@ class EventViewModel: ObservableObject {
         
         if let smsURL = URL(string: smsURLString), UIApplication.shared.canOpenURL(smsURL) {
             UIApplication.shared.open(smsURL)
-            print("✅ Opened Messages app with pre-filled message")
+            LogManager.shared.info("✅ Opened Messages app with pre-filled message")
         } else {
-            print("❌ Failed to open Messages app")
+            LogManager.shared.error("❌ Failed to open Messages app")
         }
     }
     
@@ -211,7 +221,7 @@ class EventViewModel: ObservableObject {
         // Cancel scheduled notifications
         notificationManager.cancelReminders(for: event)
         
-        print("❌ User cancelled attendance")
+        LogManager.shared.info("❌ User cancelled attendance")
         
         // Open Messages app with pre-filled cancellation message
         openCancellationMessageToHost()
@@ -219,7 +229,7 @@ class EventViewModel: ObservableObject {
     
     func openCancellationMessageToHost() {
         guard let hostContact = event.hostContact else {
-            print("⚠️ No host contact available")
+            LogManager.shared.warning("⚠️ No host contact available")
             return
         }
         
@@ -235,9 +245,9 @@ class EventViewModel: ObservableObject {
         
         if let smsURL = URL(string: smsURLString), UIApplication.shared.canOpenURL(smsURL) {
             UIApplication.shared.open(smsURL)
-            print("✅ Opened Messages app with pre-filled cancellation message")
+            LogManager.shared.info("✅ Opened Messages app with pre-filled cancellation message")
         } else {
-            print("❌ Failed to open Messages app")
+            LogManager.shared.error("❌ Failed to open Messages app")
         }
     }
     
