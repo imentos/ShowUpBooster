@@ -158,6 +158,31 @@
     </div>
     
     <script>
+        // Check if URL has event parameters
+        function parseEventFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const title = params.get('title');
+            const address = params.get('address');
+            const dateTime = params.get('dateTime') || params.get('datetime');
+            const host = params.get('host');
+            const contact = params.get('contact');
+            
+            return { title, address, dateTime, host, contact };
+        }
+        
+        function formatDateTime(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+        }
+        
         // Generate a test URL with current time + 3 hours
         function generateTestUrl() {
             const now = new Date();
@@ -165,12 +190,45 @@
             const datetime = now.toISOString();
             
             const baseUrl = window.location.origin;
-            const eventUrl = `${baseUrl}/ShowUpBooster/?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&datetime=${datetime}&lat=37.3346&lng=-122.009`;
+            const eventUrl = `${baseUrl}/ShowUpBooster/?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&dateTime=${datetime}&lat=37.3346&lng=-122.009`;
             
             document.getElementById('testUrl').innerHTML = `<a href="${eventUrl}" style="color: white;">${eventUrl}</a>`;
         }
         
-        generateTestUrl();
+        // Check if this is an event invitation
+        const event = parseEventFromUrl();
+        
+        if (event.title && event.address && event.dateTime) {
+            // This is an event invitation - show event details
+            document.body.innerHTML = `
+                <div class="container">
+                    <div class="icon">📅</div>
+                    <h1>You're Invited!</h1>
+                    <p class="tagline">Open in the app to confirm your attendance</p>
+                    
+                    <div class="card">
+                        <h2>${event.title}</h2>
+                        <p style="font-size: 18px; margin: 15px 0;">
+                            📍 ${event.address}
+                        </p>
+                        <p style="font-size: 18px; margin: 15px 0;">
+                            🕐 ${formatDateTime(event.dateTime)}
+                        </p>
+                        ${event.host ? `<p style="font-size: 16px; margin: 10px 0;">👤 Host: ${event.host}</p>` : ''}
+                    </div>
+                    
+                    <div class="card">
+                        <h2>How to Confirm</h2>
+                        <p>Open this page on your iPhone to use the App Clip and confirm your attendance instantly.</p>
+                    </div>
+                    
+                    <p class="footer" style="margin-top: 40px;">© 2026 ShowUpBooster. All rights reserved.</p>
+                </div>
+            `;
+        } else {
+            // Normal landing page
+            generateTestUrl();
+        }
     </script>
 </body>
 </html>
