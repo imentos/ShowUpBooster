@@ -25,21 +25,41 @@ struct EventHistoryView: View {
             .navigationTitle("My Events")
             .onAppear(perform: loadEvents)
             .sheet(isPresented: $showingShareSheet) {
-                if let event = selectedEvent, let url = URL(string: event.invitationURL) {
-                    ShareSheet(items: [url])
+                if let event = selectedEvent {
+                    if let url = URL(string: event.invitationURL) {
+                        ShareSheet(items: [url])
+                    } else if let encodedURL = event.invitationURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                              let url = URL(string: encodedURL) {
+                        ShareSheet(items: [url])
+                    } else {
+                        VStack(spacing: 20) {
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.system(size: 50))
+                                .foregroundColor(.orange)
+                            Text("Unable to share event")
+                                .font(.headline)
+                            Text("Invalid URL: \(event.invitationURL)")
+                                .font(.caption)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            Button("Copy URL") {
+                                UIPasteboard.general.string = event.invitationURL
+                            }
+                            .buttonStyle(.bordered)
+                            Button("Close") {
+                                showingShareSheet = false
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        .padding()
+                    }
                 } else {
                     VStack(spacing: 20) {
                         Image(systemName: "exclamationmark.triangle")
                             .font(.system(size: 50))
                             .foregroundColor(.orange)
-                        Text("Unable to share event")
+                        Text("No event selected")
                             .font(.headline)
-                        if let event = selectedEvent {
-                            Text("Invalid URL: \(event.invitationURL)")
-                                .font(.caption)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                        }
                         Button("Close") {
                             showingShareSheet = false
                         }
@@ -74,7 +94,13 @@ struct EventHistoryView: View {
             ForEach(savedEvents.sorted(by: { $0.createdAt > $1.createdAt })) { event in
                 EventHistoryRow(event: event) {
                     print("🔍 Sharing event: \(event.title)")
-                    print("🔍 URL: \(event.invitationURL)")
+                    print("🔍 URL string: \(event.invitationURL)")
+                    print("🔍 URL string count: \(event.invitationURL.count)")
+                    if let url = URL(string: event.invitationURL) {
+                        print("✅ URL created successfully: \(url.absoluteString)")
+                    } else {
+                        print("❌ Failed to create URL from string")
+                    }
                     selectedEvent = event
                     showingShareSheet = true
                 }
