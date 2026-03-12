@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+// Wrapper to make URL Identifiable
+struct IdentifiableURL: Identifiable {
+    let id = UUID()
+    let url: URL
+}
+
 struct EventHistoryView: View {
     @AppStorage("savedEvents") private var savedEventsData: Data = Data()
     @State private var savedEvents: [SavedEvent] = []
-    @State private var shareURL: URL?
+    @State private var shareURL: IdentifiableURL?
     
     var body: some View {
         NavigationStack {
@@ -23,10 +29,10 @@ struct EventHistoryView: View {
             }
             .navigationTitle("My Events")
             .onAppear(perform: loadEvents)
-            .sheet(item: $shareURL) { url in
-                ShareSheet(items: [url])
+            .sheet(item: $shareURL) { identifiableURL in
+                ShareSheet(items: [identifiableURL.url])
                     .onAppear {
-                        print("📋 Sheet: URL is set - \(url.absoluteString)")
+                        print("📋 Sheet: URL is set - \(identifiableURL.url.absoluteString)")
                         print("✅ Sheet: Presenting ShareSheet")
                     }
             }
@@ -61,7 +67,7 @@ struct EventHistoryView: View {
                     if let url = URL(string: event.invitationURL) {
                         print("✅ URL created successfully: \(url.absoluteString)")
                         print("📱 Setting shareURL to trigger sheet")
-                        shareURL = url
+                        shareURL = IdentifiableURL(url: url)
                     } else {
                         print("❌ Failed to create URL from string")
                     }
