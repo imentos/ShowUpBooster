@@ -10,8 +10,7 @@ import SwiftUI
 struct EventHistoryView: View {
     @AppStorage("savedEvents") private var savedEventsData: Data = Data()
     @State private var savedEvents: [SavedEvent] = []
-    @State private var selectedEventURL: URL?
-    @State private var showingShareSheet = false
+    @State private var shareURL: URL?
     
     var body: some View {
         NavigationStack {
@@ -24,32 +23,12 @@ struct EventHistoryView: View {
             }
             .navigationTitle("My Events")
             .onAppear(perform: loadEvents)
-            .sheet(isPresented: $showingShareSheet) {
-                if let url = selectedEventURL {
-                    ShareSheet(items: [url])
-                        .onAppear {
-                            print("📋 Sheet: URL is set - \(url.absoluteString)")
-                            print("✅ Sheet: Presenting ShareSheet")
-                        }
-                } else {
-                    VStack(spacing: 20) {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: 50))
-                            .foregroundColor(.orange)
-                        Text("Unable to share event")
-                            .font(.headline)
-                        Text("No URL available")
-                            .font(.caption)
-                        Button("Close") {
-                            showingShareSheet = false
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                    .padding()
+            .sheet(item: $shareURL) { url in
+                ShareSheet(items: [url])
                     .onAppear {
-                        print("❌ Sheet: selectedEventURL is nil")
+                        print("📋 Sheet: URL is set - \(url.absoluteString)")
+                        print("✅ Sheet: Presenting ShareSheet")
                     }
-                }
             }
         }
     }
@@ -81,8 +60,8 @@ struct EventHistoryView: View {
                     
                     if let url = URL(string: event.invitationURL) {
                         print("✅ URL created successfully: \(url.absoluteString)")
-                        selectedEventURL = url
-                        showingShareSheet = true
+                        print("📱 Setting shareURL to trigger sheet")
+                        shareURL = url
                     } else {
                         print("❌ Failed to create URL from string")
                     }
