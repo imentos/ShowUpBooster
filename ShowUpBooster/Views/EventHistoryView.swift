@@ -27,6 +27,25 @@ struct EventHistoryView: View {
             .sheet(isPresented: $showingShareSheet) {
                 if let event = selectedEvent, let url = URL(string: event.invitationURL) {
                     ShareSheet(items: [url])
+                } else {
+                    VStack(spacing: 20) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.system(size: 50))
+                            .foregroundColor(.orange)
+                        Text("Unable to share event")
+                            .font(.headline)
+                        if let event = selectedEvent {
+                            Text("Invalid URL: \(event.invitationURL)")
+                                .font(.caption)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                        }
+                        Button("Close") {
+                            showingShareSheet = false
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    .padding()
                 }
             }
         }
@@ -54,6 +73,8 @@ struct EventHistoryView: View {
         List {
             ForEach(savedEvents.sorted(by: { $0.createdAt > $1.createdAt })) { event in
                 EventHistoryRow(event: event) {
+                    print("🔍 Sharing event: \(event.title)")
+                    print("🔍 URL: \(event.invitationURL)")
                     selectedEvent = event
                     showingShareSheet = true
                 }

@@ -148,6 +148,19 @@ struct CreateEventView: View {
             .sheet(isPresented: $showingShareSheet) {
                 if let url = generatedURL {
                     ShareSheet(items: [url])
+                } else {
+                    VStack(spacing: 20) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.system(size: 50))
+                            .foregroundColor(.orange)
+                        Text("Unable to generate link")
+                            .font(.headline)
+                        Button("Close") {
+                            showingShareSheet = false
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    .padding()
                 }
             }
             .alert("Error", isPresented: $showingError) {
