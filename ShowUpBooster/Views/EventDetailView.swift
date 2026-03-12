@@ -163,26 +163,6 @@ struct EventDetailView: View {
                                             }
                                         }
                                     }
-                                    
-                                    // Host Email
-                                    if let hostEmail = viewModel.event.hostEmail {
-                                        HStack(spacing: 6) {
-                                            Text(hostEmail)
-                                                .font(.callout)
-                                                .fontWeight(.medium)
-                                            
-                                            Button(action: {
-                                                emailHost(hostEmail)
-                                            }) {
-                                                Image(systemName: "envelope.fill")
-                                                    .font(.caption)
-                                                    .foregroundColor(.white)
-                                                    .padding(6)
-                                                    .background(Color.orange)
-                                                    .clipShape(Circle())
-                                            }
-                                        }
-                                    }
                                 }
                                 
                                 Spacer()
@@ -427,12 +407,6 @@ struct EventDetailView: View {
         let cleanedNumber = phoneNumber.components(separatedBy: CharacterSet(charactersIn: "0123456789+").inverted).joined()
         
         if let url = URL(string: "sms:\(cleanedNumber)") {
-            openURL(url)
-        }
-    }
-    
-    private func emailHost(_ email: String) {
-        if let url = URL(string: "mailto:\(email)") {
             openURL(url)
         }
     }

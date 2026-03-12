@@ -12,12 +12,33 @@ import UIKit
 struct CreateEventView: View {
     @AppStorage("savedEvents") private var savedEventsData: Data = Data()
     
-    @State private var eventTitle = ""
-    @State private var eventAddress = ""
-    @State private var eventDateTime = Date().addingTimeInterval(86400) // Tomorrow
-    @State private var hostName = ""
-    @State private var hostContact = ""
-    @State private var hostEmail = ""
+    @AppStorage("eventTitle") private var eventTitle = ""
+    @AppStorage("eventAddress") private var eventAddress = ""
+    @State private var eventDate: Date = {
+        let now = Date()
+        let calendar = Calendar.current
+        let currentMinute = calendar.component(.minute, from: now)
+        let minutesToAdd = 15 - (currentMinute % 15)
+        return calendar.date(byAdding: .minute, value: minutesToAdd, to: now) ?? now
+    }()
+    @State private var eventHour: Int = {
+        let now = Date()
+        let calendar = Calendar.current
+        let currentMinute = calendar.component(.minute, from: now)
+        let minutesToAdd = 15 - (currentMinute % 15)
+        let future = calendar.date(byAdding: .minute, value: minutesToAdd, to: now) ?? now
+        return calendar.component(.hour, from: future)
+    }()
+    @State private var eventMinute: Int = {
+        let now = Date()
+        let calendar = Calendar.current
+        let currentMinute = calendar.component(.minute, from: now)
+        let minutesToAdd = 15 - (currentMinute % 15)
+        let future = calendar.date(byAdding: .minute, value: minutesToAdd, to: now) ?? now
+        return calendar.component(.minute, from: future)
+    }()
+    @AppStorage("hostName") private var hostName = ""
+    @AppStorage("hostContact") private var hostContact = ""
     
     @State private var showingShareSheet = false
     @State private var generatedURL: URL?
@@ -25,17 +46,58 @@ struct CreateEventView: View {
     @State private var showingError = false
     @State private var errorMessage = ""
     
+    private let minuteOptions = [0, 15, 30, 45]
+    
+    private var eventDateTime: Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: eventDate)
+        components.hour = eventHour
+        components.minute = eventMinute
+        return Calendar.current.date(from: components) ?? eventDate
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
-                Section("Event Details") {
+                Section {
                     TextField("Event Title", text: $eventTitle)
                         .autocorrectionDisabled()
                     
                     TextField("Event Address", text: $eventAddress)
                         .autocorrectionDisabled()
                     
-                    DatePicker("Date & Time", selection: $eventDateTime, in: Date()...)
+                    DatePicker("Date", 
+                              selection: $eventDate, 
+                              in: Date()...,
+                              displayedComponents: .date)
+                        .datePickerStyle(.compact)
+                    
+                    HStack {
+                        Text("Time")
+                        Spacer()
+                        
+                        Picker("Hour", selection: $eventHour) {
+                            ForEach(0..<24, id: \.self) { hour in
+                                Text(String(format: "%02d", hour)).tag(hour)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 50, height: 150)
+                        .clipped()
+                        
+                        Text(":")
+                            .font(.title2)
+                        
+                        Picker("Minute", selection: $eventMinute) {
+                            ForEach(minuteOptions, id: \.self) { minute in
+                                Text(String(format: "%02d", minute)).tag(minute)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 50, height: 150)
+                        .clipped()
+                    }
+                } header: {
+                    Text("Event Details")
                 }
                 
                 Section("Host Information") {
@@ -44,25 +106,14 @@ struct CreateEventView: View {
                     
                     TextField("Phone Number", text: $hostContact)
                         .keyboardType(.phonePad)
+                        .textContentType(.telephoneNumber)
                     
                     if !hostContact.isEmpty && !isValidPhoneNumber(hostContact) {
                         Text("Please enter a valid phone number")
                             .font(.caption)
                             .foregroundColor(.red)
                     }
-                    
-                    TextField("Email Address", text: $hostEmail)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                    
-                    if !hostEmail.isEmpty && !isValidEmail(hostEmail) {
-                        Text("Please enter a valid email address")
-                            .font(.caption)
-                            .foregroundColor(.red)
-                    }
                 }
-                .textContentType(.emailAddress)
                 
                 Section {
                     Button(action: generateLink) {
@@ -112,9 +163,7 @@ struct CreateEventView: View {
         !eventAddress.isEmpty &&
         !hostName.isEmpty &&
         !hostContact.isEmpty &&
-        isValidPhoneNumber(hostContact) &&
-        !hostEmail.isEmpty &&
-        isValidEmail(hostEmail)
+        isValidPhoneNumber(hostContact)
     }
     
     private func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
@@ -125,12 +174,6 @@ struct CreateEventView: View {
         // and no more than 15 digits (max international format)
         let digitCount = cleanedNumber.filter { $0.isNumber }.count
         return digitCount >= 7 && digitCount <= 15
-    }
-    
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailPredicate.evaluate(with: email)
     }
     
     private func generateLink() {
@@ -162,7 +205,6 @@ struct CreateEventView: View {
                 dateTime: eventDateTime,
                 hostName: hostName,
                 hostContact: hostContact,
-                hostEmail: hostEmail,
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude
             )

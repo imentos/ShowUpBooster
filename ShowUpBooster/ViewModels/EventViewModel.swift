@@ -81,95 +81,42 @@ class EventViewModel: ObservableObject {
     // MARK: - Landlord Notification
     
     private func notifyLandlord() async {
-        let resendAPIKey = "re_UqtXCbNP_KJc9zLe2pvyvpj14U6pwLtRv"
+        LogManager.shared.info("📧 Starting host notification process...")
         
-        LogManager.shared.info("📧 Starting email notification process...")
-        
-        // Get host email from event
-        guard let hostEmail = event.hostEmail, !hostEmail.isEmpty else {
-            LogManager.shared.warning("⚠️ No host email available. Skipping notification.")
+        // Get host contact from event
+        guard let hostContact = event.hostContact, !hostContact.isEmpty else {
+            LogManager.shared.warning("⚠️ No host contact available. Skipping notification.")
             return
         }
         
-        LogManager.shared.info("📧 Recipient email: \(hostEmail)")
+        LogManager.shared.info("📧 Host contact: \(hostContact)")
         
-        // Validate email format (basic check)
-        guard hostEmail.contains("@") && hostEmail.contains(".") else {
-            LogManager.shared.warning("⚠️ Invalid host email format: \(hostEmail)")
-            return
+        // Generate pre-filled confirmation message
+        let message = generateConfirmationMessage()
+        
+        // Clean phone number (remove spaces, dashes, parentheses)
+        let cleanedContact = hostContact.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        // Create SMS URL with pre-filled body
+        let encodedMessage = message.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? message
+        let smsURLString = "sms:\(cleanedContact)&body=\(encodedMessage)"
+        
+        if let smsURL = URL(string: smsURLString), UIApplication.shared.canOpenURL(smsURL) {
+            await UIApplication.shared.open(smsURL)
+            LogManager.shared.success("✅ Opened Messages app with confirmation notification")
+        } else {
+            LogManager.shared.error("❌ Failed to open Messages app")
         }
-        
-        guard let url = URL(string: "https://api.resend.com/emails") else {
-            LogManager.shared.error("❌ Invalid Resend API URL")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(resendAPIKey)", forHTTPHeaderField: "Authorization")
-        
-        // Format the event time nicely
+    }
+    
+    func generateConfirmationMessage() -> String {
+        let hostName = event.hostName ?? "there"
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .short
         formatter.timeStyle = .short
-        let formattedDateTime = formatter.string(from: event.dateTime)
+        let eventTime = formatter.string(from: event.dateTime)
         
-        let emailSubject = "✅ Showing Confirmed: \(event.title)"
-        LogManager.shared.info("📧 Email subject: \(emailSubject)")
-        
-        // Create email payload
-        let emailPayload: [String: Any] = [
-            "from": "Event Reminder <notifications@northpoleapps.online>",  // Using your domain
-            "to": [hostEmail],
-            "subject": emailSubject,
-            "html": """
-                <h2>Great news! Someone just confirmed attendance! 🎉</h2>
-                <p><strong>🏠 Property:</strong> \(event.title)</p>
-                <p><strong>📍 Address:</strong> \(event.address)</p>
-                <p><strong>⏰ Showing Time:</strong> \(formattedDateTime)</p>
-                <p><strong>✅ Confirmed at:</strong> \(Date().formatted(date: .abbreviated, time: .shortened))</p>
-                <hr>
-                <p style="color: #666; font-size: 12px;">They'll receive automatic reminders 1 day before, 2 hours before, and 30 minutes before the showing.</p>
-                """
-        ]
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: emailPayload)
-            
-            // Log the payload
-            if let payloadString = String(data: request.httpBody!, encoding: .utf8) {
-                LogManager.shared.debug("📧 Email payload: \(payloadString)")
-            }
-            
-            LogManager.shared.info("📧 Sending email to Resend API...")
-            LogManager.shared.debug("Request URL: \(url.absoluteString)")
-            LogManager.shared.debug("Request method: \(request.httpMethod ?? "nil")")
-            LogManager.shared.debug("Request headers: \(request.allHTTPHeaderFields?.description ?? "nil")")
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            LogManager.shared.info("📧 Received response from Resend API")
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                let responseBody = String(data: data, encoding: .utf8) ?? "No response body"
-                LogManager.shared.info("📧 Resend API response status: \(httpResponse.statusCode)")
-                LogManager.shared.debug("📧 Resend API response body: \(responseBody)")
-                
-                if (200...299).contains(httpResponse.statusCode) {
-                    LogManager.shared.success("✅ Landlord notified via email successfully")
-                } else {
-                    LogManager.shared.warning("⚠️ Email notification failed with status \(httpResponse.statusCode)")
-                }
-            }
-        } catch {
-            LogManager.shared.error("⚠️ Failed to send landlord notification: \(error.localizedDescription)")
-            if let urlError = error as? URLError {
-                LogManager.shared.error("URLError code: \(urlError.code.rawValue)")
-                LogManager.shared.error("URLError description: \(urlError.errorCode)")
-            }
-            // Don't show error to user - confirmation still works locally
-        }
+        return "Hi \(hostName), I've confirmed my attendance for the showing at \(event.title) on \(eventTime). Looking forward to it!"
     }
     
     // MARK: - Status Updates
