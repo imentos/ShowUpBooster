@@ -26,12 +26,16 @@ struct EventHistoryView: View {
             .onAppear(perform: loadEvents)
             .sheet(isPresented: $showingShareSheet) {
                 if let event = selectedEvent {
+                    print("📋 Sheet: selectedEvent is set - \(event.title)")
                     if let url = URL(string: event.invitationURL) {
+                        print("✅ Sheet: URL created from string successfully")
                         ShareSheet(items: [url])
                     } else if let encodedURL = event.invitationURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                               let url = URL(string: encodedURL) {
+                        print("✅ Sheet: URL created after encoding")
                         ShareSheet(items: [url])
                     } else {
+                        print("❌ Sheet: Failed to create URL, showing error")
                         VStack(spacing: 20) {
                             Image(systemName: "exclamationmark.triangle")
                                 .font(.system(size: 50))
@@ -54,6 +58,7 @@ struct EventHistoryView: View {
                         .padding()
                     }
                 } else {
+                    print("❌ Sheet: selectedEvent is nil")
                     VStack(spacing: 20) {
                         Image(systemName: "exclamationmark.triangle")
                             .font(.system(size: 50))
@@ -101,8 +106,13 @@ struct EventHistoryView: View {
                     } else {
                         print("❌ Failed to create URL from string")
                     }
+                    
+                    // Set selected event first, then show sheet after a brief delay
                     selectedEvent = event
-                    showingShareSheet = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        print("📱 Presenting share sheet")
+                        showingShareSheet = true
+                    }
                 }
             }
             .onDelete(perform: deleteEvents)
