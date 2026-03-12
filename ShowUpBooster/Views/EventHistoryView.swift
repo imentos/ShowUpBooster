@@ -10,7 +10,7 @@ import SwiftUI
 struct EventHistoryView: View {
     @AppStorage("savedEvents") private var savedEventsData: Data = Data()
     @State private var savedEvents: [SavedEvent] = []
-    @State private var selectedEvent: SavedEvent?
+    @State private var selectedEventURL: URL?
     @State private var showingShareSheet = false
     
     var body: some View {
@@ -25,62 +25,29 @@ struct EventHistoryView: View {
             .navigationTitle("My Events")
             .onAppear(perform: loadEvents)
             .sheet(isPresented: $showingShareSheet) {
-                Group {
-                    if let event = selectedEvent {
-                        if let url = URL(string: event.invitationURL) {
-                            ShareSheet(items: [url])
-                                .onAppear {
-                                    print("📋 Sheet: selectedEvent is set - \(event.title)")
-                                    print("✅ Sheet: URL created from string successfully")
-                                }
-                        } else if let encodedURL = event.invitationURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                                  let url = URL(string: encodedURL) {
-                            ShareSheet(items: [url])
-                                .onAppear {
-                                    print("📋 Sheet: selectedEvent is set - \(event.title)")
-                                    print("✅ Sheet: URL created after encoding")
-                                }
-                        } else {
-                            VStack(spacing: 20) {
-                                Image(systemName: "exclamationmark.triangle")
-                                    .font(.system(size: 50))
-                                    .foregroundColor(.orange)
-                                Text("Unable to share event")
-                                    .font(.headline)
-                                Text("Invalid URL: \(event.invitationURL)")
-                                    .font(.caption)
-                                    .multilineTextAlignment(.center)
-                                    .padding()
-                                Button("Copy URL") {
-                                    UIPasteboard.general.string = event.invitationURL
-                                }
-                                .buttonStyle(.bordered)
-                                Button("Close") {
-                                    showingShareSheet = false
-                                }
-                                .buttonStyle(.borderedProminent)
-                            }
-                            .padding()
-                            .onAppear {
-                                print("❌ Sheet: Failed to create URL, showing error")
-                            }
-                        }
-                    } else {
-                        VStack(spacing: 20) {
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.system(size: 50))
-                                .foregroundColor(.orange)
-                            Text("No event selected")
-                                .font(.headline)
-                            Button("Close") {
-                                showingShareSheet = false
-                            }
-                            .buttonStyle(.borderedProminent)
-                        }
-                        .padding()
+                if let url = selectedEventURL {
+                    ShareSheet(items: [url])
                         .onAppear {
-                            print("❌ Sheet: selectedEvent is nil")
+                            print("📋 Sheet: URL is set - \(url.absoluteString)")
+                            print("✅ Sheet: Presenting ShareSheet")
                         }
+                } else {
+                    VStack(spacing: 20) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.system(size: 50))
+                            .foregroundColor(.orange)
+                        Text("Unable to share event")
+                            .font(.headline)
+                        Text("No URL available")
+                            .font(.caption)
+                        Button("Close") {
+                            showingShareSheet = false
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    .padding()
+                    .onAppear {
+                        print("❌ Sheet: selectedEventURL is nil")
                     }
                 }
             }
@@ -111,18 +78,13 @@ struct EventHistoryView: View {
                 EventHistoryRow(event: event) {
                     print("🔍 Sharing event: \(event.title)")
                     print("🔍 URL string: \(event.invitationURL)")
-                    print("🔍 URL string count: \(event.invitationURL.count)")
+                    
                     if let url = URL(string: event.invitationURL) {
                         print("✅ URL created successfully: \(url.absoluteString)")
+                        selectedEventURL = url
+                        showingShareSheet = true
                     } else {
                         print("❌ Failed to create URL from string")
-                    }
-                    
-                    // Set selected event first, then show sheet after a brief delay
-                    selectedEvent = event
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        print("📱 Presenting share sheet")
-                        showingShareSheet = true
                     }
                 }
             }
