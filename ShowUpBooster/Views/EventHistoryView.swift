@@ -25,52 +25,63 @@ struct EventHistoryView: View {
             .navigationTitle("My Events")
             .onAppear(perform: loadEvents)
             .sheet(isPresented: $showingShareSheet) {
-                if let event = selectedEvent {
-                    print("📋 Sheet: selectedEvent is set - \(event.title)")
-                    if let url = URL(string: event.invitationURL) {
-                        print("✅ Sheet: URL created from string successfully")
-                        ShareSheet(items: [url])
-                    } else if let encodedURL = event.invitationURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                              let url = URL(string: encodedURL) {
-                        print("✅ Sheet: URL created after encoding")
-                        ShareSheet(items: [url])
+                Group {
+                    if let event = selectedEvent {
+                        if let url = URL(string: event.invitationURL) {
+                            ShareSheet(items: [url])
+                                .onAppear {
+                                    print("📋 Sheet: selectedEvent is set - \(event.title)")
+                                    print("✅ Sheet: URL created from string successfully")
+                                }
+                        } else if let encodedURL = event.invitationURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                  let url = URL(string: encodedURL) {
+                            ShareSheet(items: [url])
+                                .onAppear {
+                                    print("📋 Sheet: selectedEvent is set - \(event.title)")
+                                    print("✅ Sheet: URL created after encoding")
+                                }
+                        } else {
+                            VStack(spacing: 20) {
+                                Image(systemName: "exclamationmark.triangle")
+                                    .font(.system(size: 50))
+                                    .foregroundColor(.orange)
+                                Text("Unable to share event")
+                                    .font(.headline)
+                                Text("Invalid URL: \(event.invitationURL)")
+                                    .font(.caption)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                Button("Copy URL") {
+                                    UIPasteboard.general.string = event.invitationURL
+                                }
+                                .buttonStyle(.bordered)
+                                Button("Close") {
+                                    showingShareSheet = false
+                                }
+                                .buttonStyle(.borderedProminent)
+                            }
+                            .padding()
+                            .onAppear {
+                                print("❌ Sheet: Failed to create URL, showing error")
+                            }
+                        }
                     } else {
-                        print("❌ Sheet: Failed to create URL, showing error")
                         VStack(spacing: 20) {
                             Image(systemName: "exclamationmark.triangle")
                                 .font(.system(size: 50))
                                 .foregroundColor(.orange)
-                            Text("Unable to share event")
+                            Text("No event selected")
                                 .font(.headline)
-                            Text("Invalid URL: \(event.invitationURL)")
-                                .font(.caption)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Button("Copy URL") {
-                                UIPasteboard.general.string = event.invitationURL
-                            }
-                            .buttonStyle(.bordered)
                             Button("Close") {
                                 showingShareSheet = false
                             }
                             .buttonStyle(.borderedProminent)
                         }
                         .padding()
-                    }
-                } else {
-                    print("❌ Sheet: selectedEvent is nil")
-                    VStack(spacing: 20) {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: 50))
-                            .foregroundColor(.orange)
-                        Text("No event selected")
-                            .font(.headline)
-                        Button("Close") {
-                            showingShareSheet = false
+                        .onAppear {
+                            print("❌ Sheet: selectedEvent is nil")
                         }
-                        .buttonStyle(.borderedProminent)
                     }
-                    .padding()
                 }
             }
         }
