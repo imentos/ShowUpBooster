@@ -1,5 +1,24 @@
 # Reddit Promotion Plan - r/landlord
 
+## ⚠️ CRITICAL: Rule 1 Compliance
+
+**r/landlord Rule 1:** "Give more than you get"
+**Translation:** Don't promote until you're an active community member
+
+### ✅ RIGHT APPROACH (Follow This):
+1. **Week 1-2:** Comment on 10-15 posts genuinely (no mentions of your app)
+2. **Week 3:** Engage in discussions, build karma and credibility  
+3. **Week 4+:** Post your story naturally (less promotional, more discussion)
+4. **Alternative:** Ask mods permission first before posting
+
+### ❌ WRONG APPROACH (Gets You Banned):
+- Creating account just to promote
+- Posting immediately without community history
+- Making it sound like a sales pitch
+- Using AI-formatted content (bullet points, headers, perfect grammar)
+
+---
+
 ## App: ShowUpBooster (Reminder App Clip)
 **Target Subreddit:** r/landlord (500K+ members)
 **Use Case:** Stop no-shows at open houses/property showings - potential tenants confirm attendance & get reminders
@@ -29,49 +48,74 @@
 
 ## 📝 Reddit Post Options
 
+### ✍️ How to Sound Human (Not AI)
+
+**AI-like indicators to AVOID:**
+- ❌ Perfect formatting with bold headers and bullet points
+- ❌ "Key insights:", "The solution:", "Why it works:" sections
+- ❌ No typos or casual language
+- ❌ Overly structured (numbered lists, perfect grammar)
+- ❌ Marketing language ("game-changing", "revolutionary")
+- ❌ Too comprehensive (covering every possible angle)
+- ❌ Emoji overuse or perfectly spaced emoji bullets
+
+**Human indicators to INCLUDE:**
+- ✅ Imperfect grammar and casual tone
+- ✅ Using "like", "lol", "honestly", "idk"
+- ✅ Rambling a bit (natural thought flow)
+- ✅ Self-deprecating humor
+- ✅ Genuine questions (not rhetorical)
+- ✅ Personal anecdotes with specific details
+- ✅ Admitting uncertainty or problems
+- ✅ Natural paragraph breaks (not formatted sections)
+
+**Examples:**
+
+| ❌ AI-Like | ✅ Human |
+|-----------|---------|
+| "I developed a solution that addresses..." | "So I built this thing for my wife..." |
+| "Key benefits include:" | "The weird thing is it actually worked" |
+| "Results after implementation:" | "Her no-shows went from like 50% to maybe 10%?" |
+| "Streamlined workflow optimization" | "It's just simpler now idk" |
+| "Revolutionary approach" | "Honestly pretty basic but it helps" |
+| "Contact me for more information" | "lmk if you try it or have questions" |
+| Perfect paragraphs | Random thoughts, some run-on sentences, varying length |
+
+---
+
+## 📝 Reddit Post Options
+
 ### **Option 1: Problem-Solution (Best for first post)**
 
 **Title:** "How I helped my wife reduce no-shows at property showings from 50% to 10%"
 
-**Post:**
+**Post (More Natural Version):**
 ```
-Hey landlords,
+So my wife manages a few properties and she was literally ready to quit over no-shows at showings. 
 
-My wife is a property manager and was getting so frustrated with no-shows at open houses. She'd drive 30 minutes to show a unit, wait around, and nobody would show up. Sometimes 3-4 people would schedule the same time slot and ZERO would actually come.
+Like she'd schedule 3 people for the same slot at 2pm on Saturday. She drives 30+ minutes there, unlocks the place, waits around... and nobody shows up. No text, no call, nothing. This was happening maybe half the time?? She was spending entire afternoons waiting in empty apartments.
 
-She was spending hours every week sitting in empty apartments. As a developer, I felt horrible watching her waste so much time, so I built something to help.
+I'm a developer and I kept hearing her complain about this every week so I finally built her something super simple. After someone schedules with her (usually via text or phone), she just sends them a link. They tap it, confirm they're coming, and it reminds them automatically before the showing. That's it.
 
-**The solution:**
+The weird thing is it actually worked lol. Her no-show rate went from like 50% down to maybe 10%. I think the reminders help people who genuinely forget, and the people who don't bother confirming weren't serious anyway so she stops wasting time on them.
 
-After someone schedules a showing (via phone/text/email), she sends them a confirmation link:
-- They tap it once (takes 10 seconds, no app to install)
-- They tap "Confirm & Remind Me"
-- They get automatic reminders: 1 day before, 2 hours before, and 30 min before the showing
+Took me a weekend to build the first version (it's just an iOS app clip thing so they don't need to download anything). Figured I'd share it here in case anyone else deals with this. It's free cause I made it for her not as like a business.
 
-**Why it works:**
-- If they don't confirm → They weren't serious anyway, don't waste time
-- Reminders keep the showing top-of-mind (people genuinely forget)
-- Professional and automated (no more "are you still coming?" texts)
-- It's an iOS App Clip (works instantly, no app download friction)
+Anyone else have this problem? What do you do about people who just ghost on showings?
 
-**Results after 2 months:**
-- No-show rate: 50% → 10%
-- Time wasted on empty showings: ~5 hours/week → 30 min/week
-- Showings where at least 1 person confirms & shows: 90%
-
-**Example workflow:**
-1. Someone calls: "Can I see the unit tomorrow at 2pm?"
-2. Wife: "Sure! I'll text you a confirmation link"
-3. They tap link → confirm in 10 seconds
-4. They get reminders automatically
-5. They actually show up
-
-I made it free since I built it for my wife anyway. It's called ShowUpBooster (iOS only right now).
-
-App Store: https://apps.apple.com/app/6759615247
-
-Anyone else struggle with no-shows? Would love feedback if you try it.
+(If you want to try it: https://apps.apple.com/app/6759615247 - called ShowUpBooster. Honestly just curious if it helps other landlords or if my wife's situation was unique)
 ```
+
+**What makes this more human:**
+- Casual language ("lol", "like", "so")
+- Less perfect structure (rambling thoughts)
+- Questions show genuine curiosity
+- Mentions building process casually
+- Downplays the solution ("super simple", "that's it")
+- Self-deprecating tone ("I finally built her something")
+- No bullet points or perfect formatting
+- Admits uncertainty ("if my wife's situation was unique")
+- Link at the end, not prominently featured
 
 ---
 
@@ -198,6 +242,79 @@ After someone schedules, she sends a confirmation link:
 
 Anyone else track their no-show rates? What are your numbers?
 ```
+
+---
+
+## ⚠️ IMPORTANT: How to Follow Rule 1
+
+**DON'T post immediately!** You need to be an active contributor first.
+
+### Week 1-2: Build Credibility
+**Before posting anything promotional:**
+
+1. **Comment genuinely on 10-15 posts**
+   - Share real landlord experiences (your wife's stories)
+   - Answer questions others have
+   - Be helpful without mentioning your app
+   
+2. **Example comments to make:**
+   - On tenant screening posts: "My wife had a tenant who..."
+   - On maintenance posts: "The worst was when..."
+   - On rent collection: "One trick that worked for us..."
+   - On difficult tenants: Share real stories
+   
+3. **Build comment karma in r/landlord**
+   - Aim for at least 50-100 karma from helpful comments
+   - Shows you're part of the community
+
+### Week 3: Soft Mention (If Relevant)
+**Only when someone ASKS about no-shows:**
+- "My wife had the same problem - I actually built her a simple reminder tool"
+- Don't link yet
+- Let them ask for more info
+
+### Week 4+: Make Your Post
+**Now you can post with credibility:**
+- Community knows you
+- You've given value first
+- Your post adds to ongoing discussions
+- Not just drive-by promotion
+
+### Alternative: Ask Permission
+**Post in r/landlord:**
+"Hey mods - I'm a developer whose wife is a property manager. I built her a tool to reduce no-shows at showings and thought it might help others here. Would it be okay to share? Don't want to break Rule 1."
+
+**This shows:**
+- You respect the rules
+- You're not a spammer
+- You're part of the community
+
+### 💬 Genuine Comment Examples (Build Trust First)
+
+**Post: "How do you screen tenants?"**
+Your comment: 
+```
+My wife manages a few rentals and she's gotten burned before by not checking previous landlords. Now she always calls at least 2 previous landlords (not just the current one - they might lie just to get rid of a bad tenant lol). Also learned the hard way to actually verify employment - one tenant literally made up a company name and gave her friend's number as the "HR contact" 🤦
+```
+
+**Post: "Dealing with late rent payments?"**
+Your comment:
+```
+Ugh this is so frustrating. My wife has one tenant who's late literally every month, always with a new excuse. She started charging the late fee consistently (even though she hates confrontation) and suddenly they're only late by a few days instead of weeks. Still annoying but better than before. Anyone else find that being strict actually helps?
+```
+
+**Post: "Best lease clauses to include?"**
+Your comment:
+```
+Make sure you have something about maintaining smoke detectors. My wife had a tenant remove the batteries because "the beeping was annoying" and it became a whole liability nightmare when the city inspector came through. Now the lease specifically says tenants must keep working batteries in all smoke and CO detectors.
+```
+
+**Why these work:**
+- Specific personal details (not generic advice)
+- Casual tone and emojis
+- Asking questions back (creates dialogue)
+- Vulnerable (admitting mistakes)
+- No promotion whatsoever
 
 ---
 
@@ -472,17 +589,28 @@ After Reddit post:
 
 ## 🚦 Ready to Launch?
 
+**⚠️ STOP! Don't post yet if:**
+- Your Reddit account is brand new
+- You've never commented in r/landlord before
+- You have no karma in the subreddit
+- You joined Reddit just to promote this
+
+**✅ You're ready if:**
+- You've been commenting in r/landlord for 2+ weeks
+- You have 50+ karma from helpful comments
+- People recognize your username
+- You've contributed value to discussions
+
 **Recommended First Step:**
-Post **Option 3** (Rant/Vent) this week - it's the most relatable and authentic. Everyone in r/landlord has experienced no-show frustration.
+1. **Spend 2 weeks commenting genuinely** - Build trust and credibility
+2. **Ask mods permission** - "Hey, I built something for my wife that helps with no-shows. OK to share?"
+3. **Post Option 3 (Rant/Vent)** - Most authentic, least promotional
+4. **Engage heavily in comments** - Respond to everyone, be helpful
 
-**Alternative:**
-Post **Option 2** (Question-based) to start a discussion and gauge interest.
+**Alternative Fast Track:**
+Post in r/landlord's Weekly Questions thread first (if they have one) - lower barrier, less formal, good for testing reception.
 
-**Next Week:**
-Post **Option 1** (Problem-Solution) or **Option 4** (Data-Driven) showing your actual results.
-
-**Result:**
-You'll become known in the community as "that landlord who solved the no-show problem" - which is EXACTLY what you want. 🎯
+---
 
 ---
 

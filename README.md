@@ -111,19 +111,10 @@ https://showupbooster.app/?title=...&location=...&dateTime=...
 - ✅ App Clip invocation from QR codes
 - ✅ App Clip invocation from NFC tags
 - ✅ App Clip invocation from links in Safari, Messages, etc.
+- ✅ Opening full app for users who have it installed
 - ✅ Production deployment
 
 **Requires**: Domain registration, AASA file, Associated Domains capability
-
-#### 2. Custom URL Scheme (Development - Already Running Only)
-```
-showupbooster://?title=...&location=...&dateTime=...
-```
-
-**Use for**:
-- ✅ Testing URL parameter parsing when App Clip is already running
-- ✅ Quick development iteration
-- ❌ **Does NOT invoke App Clip from cold start**
 
 **See**: [APP_CLIP_TESTING_QUICK_REFERENCE.md](APP_CLIP_TESTING_QUICK_REFERENCE.md) for detailed testing strategies
 
