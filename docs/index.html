@@ -116,6 +116,21 @@
             opacity: 1;
             text-decoration: underline;
         }
+        
+        .qr-code {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .qr-code img {
+            display: block;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -142,6 +157,20 @@
             <div class="test-url" id="testUrl">
                 <!-- URL will be inserted by JavaScript -->
             </div>
+        </div>
+        
+        <div class="card">
+            <h2>📱 Scan with iPhone Camera</h2>
+            <p>Point your iPhone camera at this QR code to try the App Clip instantly:</p>
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://imentos.github.io/ShowUpBooster/?title=Give%2520me%2520upvotes%2520%26address=Reddit%26dateTime=2026-03-21T02:00:00Z%26lat=37.7808232%26lng=-122.3958224%26host=Imentos%26contact=6508478888" 
+                     alt="ShowUpBooster App Clip QR Code"
+                     loading="lazy">
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">
+                Just point your camera - the App Clip card will pop up automatically!<br>
+                No app download required.
+            </p>
         </div>
         
         <a href="https://apps.apple.com/app/6759615247" class="button">
