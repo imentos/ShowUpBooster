@@ -7,7 +7,7 @@
     <!-- App Clip Smart Banner Meta Tag -->
     <meta name="apple-itunes-app" content="app-id=6759615247, app-clip-bundle-id=rkuo.ShowUpBooster.Clip, app-clip-display=card">
     
-    <title>ShowUpBooster - Event Confirmation App</title>
+    <title>ShowUp Booster - Event Confirmation App</title>
     <style>
         * {
             margin: 0;
@@ -150,15 +150,7 @@
                2. Confirm your attendance instantly<br>
                3. Receive timely reminders before the event</p>
         </div>
-        
-        <div class="card">
-            <h2>Try It Now</h2>
-            <p>Open this URL on your iPhone to test the App Clip:</p>
-            <div class="test-url" id="testUrl">
-                <!-- URL will be inserted by JavaScript -->
-            </div>
-        </div>
-        
+
         <div class="card">
             <h2>📱 Scan with iPhone Camera</h2>
             <p>Point your iPhone camera at this QR code to try the App Clip instantly:</p>
@@ -170,6 +162,17 @@
             <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">
                 Just point your camera - the App Clip card will pop up automatically!<br>
                 No app download required.
+            </p>
+        </div>
+        
+        <div class="card">
+            <h2>📲 Or Tap to Try</h2>
+            <p>On mobile? Tap this link to open the App Clip instantly:</p>
+            <div class="test-url">
+                <a href="https://imentos.github.io/ShowUpBooster/?title=Give%20me%20upvotes%20&address=Reddit&dateTime=2026-03-21T02:00:00Z&lat=37.7808232&lng=-122.3958224&host=Imentos&contact=6508478888" style="color: white;">https://imentos.github.io/ShowUpBooster/?title=Give%20me%20upvotes...</a>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">
+                Same demo event - just tap instead of scan!
             </p>
         </div>
         
@@ -185,21 +188,5 @@
         
         <p class="footer">© 2026 ShowUpBooster. All rights reserved.</p>
     </div>
-    
-    <script>
-        // Generate a test URL with current time + 3 hours
-        function generateTestUrl() {
-            const now = new Date();
-            now.setHours(now.getHours() + 3);
-            const datetime = now.toISOString();
-            
-            const baseUrl = window.location.origin;
-            const eventUrl = `${baseUrl}/ShowUpBooster/?title=Team%20Meeting&address=Apple%20Park,%20Cupertino&datetime=${datetime}&lat=37.3346&lng=-122.009`;
-            
-            document.getElementById('testUrl').innerHTML = `<a href="${eventUrl}" style="color: white;">${eventUrl}</a>`;
-        }
-        
-        generateTestUrl();
-    </script>
 </body>
 </html>
