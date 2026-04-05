@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Event Reminder</string>
+	<string>ShowUp</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -25,6 +25,6 @@
 		<false/>
 	</dict>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>Event Reminder needs permission to send you reminders before your events so you don't miss them.</string>
+	<string>ShowUp needs permission to send reminders to your clients before their appointments.</string>
 </dict>
 </plist>

@@ -162,8 +162,8 @@ If app doesn't exist yet:
     - `https://imentos.github.io/ShowUpBooster/?title=Party&...`
 
 **Card Configuration:**
-- **Title**: "Reminder App Clip" (NO emojis or special characters)
-- **Subtitle**: "Confirm Your Appointment" (NO emojis or special characters)
+- **Title**: "ShowUp" (NO emojis or special characters)
+- **Subtitle**: "Confirm Your Showing" (NO emojis or special characters)
 - **Action**: "Open" or "View"
 - **Call to Action**: "Confirm" (Keep simple, no emojis)
 
@@ -285,28 +285,28 @@ Have testers verify:
 2. Fill in required fields:
 
 **Basic Info:**
-- **Name**: Reminder App Clip (18 chars)
+- **Name**: ShowUp: Open House Reminders (30 chars)
   - **IMPORTANT**: NO emojis or special characters allowed in app name
-  - **ASO Optimized**: Contains high-volume keywords "Reminder" (500K+ monthly) and "App Clip" (trending)
+  - **ASO Optimized**: Contains high-value real estate keywords "Open House" + "Reminders" — directly matches agent search intent
   - Alternative names if taken:
-    - "Reminder: Appointment Clips" (27 chars)
-    - "Property Reminder App Clip" (26 chars)
-    - "Appointment Reminder Clip" (25 chars)
-- **Subtitle**: "For Landlords & Organizers" (26 chars)
+    - "ShowUp: Realtor Reminders" (25 chars)
+    - "ShowUp: Agent Reminders" (23 chars)
+    - "Open House Reminder App" (23 chars)
+- **Subtitle**: "Reduce Open House No-Shows" (26 chars)
   - **IMPORTANT**: NO emojis or special characters in subtitle
-  - Alternative ASO subtitles (landlord-focused):
-    - "Property Viewing Reminders" (26 chars)
+  - Alternative ASO subtitles (real estate agent-focused):
+    - "Open House Attendance Booster" (29 chars)
     - "Send Appointment Reminders" (26 chars)
-    - "Professional Event Notices" (26 chars)
-    - "Viewing & Meeting Reminders" (27 chars)
+    - "Real Estate Showing Reminders" (29 chars)
+    - "Stop Client No-Shows" (20 chars)
 - **Privacy Policy URL**: `https://imentos.github.io/ShowUpBooster/privacy.html` (required)
   - ✅ Already created and hosted on GitHub Pages
   - Covers: Data collection, usage, storage, GDPR, CCPA compliance
 - **Support URL**: `https://imentos.github.io/ShowUpBooster/support.html` (optional but recommended)
   - ✅ FAQ, troubleshooting, and contact information
 - **Category**: Primary: Business, Secondary: Productivity
-  - **Target Audience**: Landlords, property managers, small business owners
-  - **Business Category Rationale**: Professional tool for client communication
+  - **Target Audience**: Real estate agents, realtors, property agents
+  - **Business Category Rationale**: Professional tool for agent-client communication and appointment management
 - **Content Rights**: You own or have rights to use
 
 **Character Restrictions for Name/Subtitle:**
@@ -391,85 +391,57 @@ Have testers verify:
 - ❌ Emojis NOT allowed in app name or subtitle
 - ⚠️ Avoid emojis in description (conservative approach recommended)
 ```
-Professional reminder delivery for landlords, property managers, and organizers. Send appointment confirmations that clients receive instantly - no app download required.
+Stop losing buyers to no-shows. ShowUp Booster sends automatic reminders to clients before your open house — so they actually show up.
 
---- BUILT FOR PROPERTY PROFESSIONALS ---
-Create viewing appointments, maintenance reminders, and meeting confirmations in seconds. Your clients tap the link and see all details immediately - no download, no friction, no excuses.
+--- BUILT FOR REAL ESTATE AGENTS ---
+You scheduled the showing. You prepared the house. Then the buyer doesn't show. ShowUp Booster fixes that. Send a confirmation link the moment you book a showing — your client gets automatic reminders at 24 hours, 2 hours, and 30 minutes before. No-shows drop. Your time stops getting wasted.
 
---- INSTANT CLIENT DELIVERY - ZERO FRICTION ---
-Your clients don't need to install anything. They tap your link, Apple's App Clip card appears, and they confirm instantly. Works on any iPhone - no storage space used on their device.
+--- ZERO FRICTION FOR BUYERS ---
+Your clients don't need to install anything. They tap your link, an App Clip card appears, and they confirm instantly. Works on any iPhone — no storage space used, no account required, no friction.
 
 --- AUTOMATIC SMART REMINDERS ---
 Your clients get perfectly timed notifications:
 • 24 hours before - Advanced notice
-• 2 hours before - Preparation time
+• 2 hours before - Time to prepare
 • 30 minutes before - Final reminder
 
-Reminders persist even if they close the app. Reduce no-shows automatically.
+Reminders persist even if they close the app. Set it once, reduce no-shows automatically.
 
---- PROPERTY LOCATIONS WITH MAPS ---
-Every reminder includes the property address with interactive map. One tap for GPS directions - clients arrive on time, every time.
+--- PROPERTY LOCATION WITH MAPS ---
+Every reminder includes the property address with an interactive map. One tap for GPS directions — buyers arrive on time, every time.
 
 --- YOUR CONTACT INFO INCLUDED ---
-Add your name and phone number - clients can call or text you directly from the reminder. Answer questions instantly, build trust, look professional.
+Add your name and phone number — clients can call or text you directly from the reminder. Answer questions instantly, build trust, look professional.
 
---- STATUS UPDATES FROM CLIENTS ---
-Clients can tap "Running Late" or "Can't Make It" right from the reminder. Better communication = better relationships = better business.
+--- CLIENT STATUS UPDATES ---
+Clients can tap "Running Late" or "Can't Make It" right from the reminder. You know in advance, not when you're already waiting at the door.
 
-PERFECT FOR LANDLORDS & PROPERTY MANAGERS:
-• Property viewing appointments
-• Showing schedules for rentals
-• Maintenance visit confirmations
-• Lease signing appointments
-• Move-in/move-out walk-throughs
-• Rent payment reminders
-• Tenant meeting notices
-• Open house events
-• Property inspection schedules
+PERFECT FOR REAL ESTATE AGENTS:
+• Open house appointments
+• Private showings
+• Buyer consultations
+• Listing presentations
+• Inspection walkthroughs
+• Offer signing appointments
+• Any client meeting
 
-ALSO GREAT FOR:
-• Small business appointment confirmations
-• Client meeting reminders
-• Service provider scheduling
-• Professional consultations
-• Team coordination
-• Any business appointment
+HOW IT WORKS:
+1. Create a showing with property address and time
+2. Add your contact info
+3. Generate a shareable confirmation link
+4. Send to your client via text or email
+5. Client taps link — App Clip appears instantly
+6. They confirm — you both get automatic reminders
+7. Fewer no-shows, more closed deals
 
-HOW IT WORKS FOR YOU:
-1. Create appointment with property details
-2. Enter address, date/time, your contact info
-3. Generate shareable confirmation link
-4. Send to client via text, email, or any platform
-5. Client taps link - App Clip appears instantly
-6. They confirm - you both get reminders
-7. Reduce no-shows, look professional
-
-HOW IT WORKS FOR YOUR CLIENTS:
-1. Receive your link via text/email
-2. Tap link - App Clip card appears instantly
-3. See appointment details, map, your contact
-4. Confirm in seconds - no app download
-5. Get automatic reminders at perfect times
-6. Call/text you if questions arise
-7. Show up on time, every time
-
-WHY PROPERTY PROFESSIONALS CHOOSE THIS:
-• Professional image - modern App Clip technology
-• Zero friction for clients - no download required
-• Reduce no-shows with automatic reminders
-• Your contact info always accessible
-• Detailed property location with maps
+WHY AGENTS CHOOSE SHOWUP BOOSTER:
+• Reduce open house no-shows automatically
+• Zero friction for clients — no app download required
+• Your contact always accessible from the reminder
+• Property location with one-tap GPS directions
 • Works instantly on any iPhone (iOS 14+)
-• Privacy-focused - no account setup for clients
-• Simple, fast, reliable
+• Privacy-focused — no account setup for clients
 • Free to use
-
-LANDLORD SUCCESS STORY:
-"Since using Reminder App Clip for property viewings, my no-show rate dropped from 30% to under 5%. Clients love that they don't need to download anything, and I love looking professional with automatic reminders." - Mike T., Property Manager, 47 units
-
-Stop losing time to no-shows. Start sending professional reminders that actually work.
-
-Download now and transform how you schedule appointments!
 ```
 
 **ASO Description Strategy:**
@@ -495,22 +467,26 @@ Download now and transform how you schedule appointments!
 
 **Keywords (100 characters max, no spaces after commas):**
 ```
-property reminder,landlord,appointment,viewing,rental,tenant,reminder,meeting,notification,schedule
+open house,real estate,no show,showings,agent,property showing,buyer,client,follow up,realtor
 ```
 
 **ASO Keyword Strategy:**
-- **Character count**: 99/100 (maximize usage)
+- **Character count**: 93/100
+- **Target audience**: Real estate agents running open houses (not landlords)
 - **High-value keywords included**:
-  - "property reminder" (landlord-specific, lower competition)
-  - "landlord" (direct target audience)
-  - "appointment" (broad business use)
-  - "viewing" (property showing context)
-  - "rental" (property management)
-  - "tenant" (landlord audience signal)
-  - "reminder" (core functionality, high volume)
-  - "meeting" (business context)
-  - "notification" (feature-based)
-  - "schedule" (appointment planning)
+  - "open house" (exact use case, low competition)
+  - "real estate" + "realtor" (direct audience)
+  - "no show" (the exact pain being solved)
+  - "showings" + "property showing" (agent vocabulary)
+  - "buyer" + "client" (who agents need to show up)
+  - "follow up" (pre-event reminder behavior)
+  - "agent" (audience signal)
+
+**Why this beats the old keyword set:**
+- Old set targeted landlords ("rental", "tenant", "landlord") — different audience
+- Apple already indexes "reminder", "appointment", "notification" from app name/description
+- "no show" directly matches what agents search when they have this problem
+- Real estate terms have lower competition than generic productivity terms
 
 **Keywords to AVOID (already in app name/subtitle):**
 - Don't repeat words from your app name
