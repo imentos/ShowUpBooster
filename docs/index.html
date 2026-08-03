@@ -25,10 +25,124 @@
             color: white;
             padding: 20px;
         }
+
+        body.invitation-page {
+            align-items: flex-start;
+            padding-top: 12px;
+        }
         
         .container {
             max-width: 600px;
             text-align: center;
+            width: 100%;
+        }
+
+        .invitation {
+            display: none;
+        }
+
+        body.invitation-page .invitation {
+            display: block;
+        }
+
+        body.invitation-page .general-landing {
+            display: none;
+        }
+
+        .open-prompt {
+            margin-bottom: 18px;
+        }
+
+        .open-arrow {
+            display: block;
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 0.9;
+            margin-bottom: 8px;
+            animation: point-up 1.2s ease-in-out infinite;
+        }
+
+        .open-prompt h1 {
+            font-size: clamp(34px, 9vw, 52px);
+            line-height: 1.05;
+            margin-bottom: 10px;
+        }
+
+        .open-prompt p {
+            font-size: 18px;
+            line-height: 1.4;
+            opacity: 0.92;
+        }
+
+        @keyframes point-up {
+            0%, 100% { transform: translateY(5px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .open-arrow { animation: none; }
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(14px);
+            border-radius: 24px;
+            padding: 26px 22px;
+            margin: 0 auto 18px;
+            text-align: left;
+            box-shadow: 0 18px 45px rgba(38, 31, 105, 0.24);
+        }
+
+        .event-card .eyebrow {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.78;
+            margin-bottom: 8px;
+        }
+
+        .event-card h2 {
+            font-size: clamp(25px, 7vw, 34px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .event-detail {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-top: 13px;
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        .event-detail .detail-icon {
+            width: 24px;
+            flex: 0 0 24px;
+            text-align: center;
+        }
+
+        .open-event-button {
+            display: block;
+            width: 100%;
+            border: 0;
+            border-radius: 16px;
+            background: white;
+            color: #515dcc;
+            padding: 17px 22px;
+            text-decoration: none;
+            font-size: 19px;
+            font-weight: 750;
+            box-shadow: 0 10px 24px rgba(28, 25, 89, 0.25);
+        }
+
+        .invitation-note {
+            margin: 14px 10px 0;
+            font-size: 14px;
+            line-height: 1.45;
+            opacity: 0.82;
         }
         
         .icon {
@@ -135,9 +249,42 @@
 </head>
 <body>
     <div class="container">
-        <div class="icon">📅</div>
-        <h1>ShowUp Booster</h1>
-        <p class="tagline">Never miss an event again</p>
+        <main class="invitation" id="invitation" aria-label="Event confirmation">
+            <div class="open-prompt">
+                <span class="open-arrow" aria-hidden="true">↑</span>
+                <h1>Tap OPEN above</h1>
+                <p>Confirm your event and turn on reminders.<br>No download required • Takes about 10 seconds</p>
+            </div>
+
+            <section class="event-card">
+                <p class="eyebrow">Your invitation</p>
+                <h2 id="event-title">Event confirmation</h2>
+                <div class="event-detail" id="event-date-row">
+                    <span class="detail-icon" aria-hidden="true">🗓️</span>
+                    <span id="event-date"></span>
+                </div>
+                <div class="event-detail" id="event-address-row">
+                    <span class="detail-icon" aria-hidden="true">📍</span>
+                    <span id="event-address"></span>
+                </div>
+                <div class="event-detail" id="event-host-row">
+                    <span class="detail-icon" aria-hidden="true">👤</span>
+                    <span id="event-host"></span>
+                </div>
+            </section>
+
+            <a class="open-event-button" id="open-event-button" href="https://appclip.apple.com/id?p=rkuo.ShowUpBooster.Clip">
+                Open Event Confirmation
+            </a>
+            <p class="invitation-note">
+                Don’t see the OPEN banner? Tap the button above. For the best experience, open this link in Safari on iPhone.
+            </p>
+        </main>
+
+        <div class="general-landing">
+            <div class="icon">📅</div>
+            <h1>ShowUp Booster</h1>
+            <p class="tagline">Never miss an event again</p>
         
         <div class="card">
             <h2>Quick Event Confirmation</h2>
@@ -186,7 +333,59 @@
             <a href="https://github.com/imentos/ShowUpBooster">GitHub</a>
         </div>
         
-        <p class="footer">© 2026 ShowUp Booster. All rights reserved.</p>
+            <p class="footer">© 2026 ShowUp Booster. All rights reserved.</p>
+        </div>
     </div>
+
+    <script>
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const title = params.get('title');
+            const address = params.get('address') || params.get('location');
+            const dateValue = params.get('dateTime') || params.get('datetime');
+
+            // Event links always include these fields. Keep the marketing page for
+            // visitors who open the site without an invitation.
+            if (!title || !address || !dateValue) return;
+
+            document.body.classList.add('invitation-page');
+            document.title = `${title} - Confirm Attendance`;
+
+            document.getElementById('event-title').textContent = title.trim();
+            document.getElementById('event-address').textContent = address.trim();
+
+            const eventDate = new Date(dateValue);
+            const dateRow = document.getElementById('event-date-row');
+            if (Number.isNaN(eventDate.getTime())) {
+                dateRow.hidden = true;
+            } else {
+                document.getElementById('event-date').textContent = new Intl.DateTimeFormat(undefined, {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    timeZoneName: 'short'
+                }).format(eventDate);
+            }
+
+            const host = params.get('host') || params.get('hostName');
+            const hostRow = document.getElementById('event-host-row');
+            if (host && host.trim()) {
+                document.getElementById('event-host').textContent = `Hosted by ${host.trim()}`;
+            } else {
+                hostRow.hidden = true;
+            }
+
+            // Apple's direct App Clip link provides a second clear launch action.
+            // Preserve the invitation parameters so the Clip opens the same event.
+            const forwardedParams = [];
+            params.forEach((value, key) => {
+                forwardedParams.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+            });
+            document.getElementById('open-event-button').href =
+                `https://appclip.apple.com/id?p=rkuo.ShowUpBooster.Clip&${forwardedParams.join('&')}`;
+        })();
+    </script>
 </body>
 </html>
